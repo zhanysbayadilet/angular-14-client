@@ -53,7 +53,7 @@ export class CategoryComponent implements OnInit {
 
   saveCategory(){
     this.categoryService.createCategory(this.category).subscribe(
-      data => data = this.category
+      () => this.category //TODO
     );
     window.location.reload();
   }
@@ -67,4 +67,8 @@ export class CategoryComponent implements OnInit {
       });
   }
 
+  editCategory(category: Category) {
+    this.showCreateCategory = true;
+    this.category = category;
+  }
 }
