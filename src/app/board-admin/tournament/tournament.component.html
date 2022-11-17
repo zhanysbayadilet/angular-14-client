@@ -14,7 +14,7 @@
   </div>
   <div class="bg-white shadow-lg mt-4 pb-4 px-4 rounded-lg w-full">
     <div class="flex justify-between w-full pt-6 ">
-      <p class="ml-3 text-2xl tracking-tight">Categories</p>
+      <p class="ml-3 text-2xl tracking-tight">Tournament</p>
       <svg width="14" height="4" viewBox="0 0 14 4" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g opacity="0.4">
           <circle cx="2.19796" cy="1.80139" r="1.38611" fill="#222222"/>
@@ -43,23 +43,29 @@
         <thead>
         <tr class="rounded-lg text-sm font-medium text-gray-700 text-left" style="font-size: 0.9674rem">
           <th class="px-4 py-2 bg-gray-200 " style="background-color:#f8f8f8">ID</th>
-          <th class="px-4 py-2 " style="background-color:#f8f8f8">Category</th>
-          <th class="px-4 py-2 " style="background-color:#f8f8f8">Image</th>
+          <th class="px-4 py-2 " style="background-color:#f8f8f8">Name</th>
           <th class="px-4 py-2 " style="background-color:#f8f8f8">Description</th>
+          <th class="px-4 py-2 " style="background-color:#f8f8f8">Start date</th>
+          <th class="px-4 py-2 " style="background-color:#f8f8f8">End date</th>
+          <th class="px-4 py-2 " style="background-color:#f8f8f8">Prize fund</th>
+          <th class="px-4 py-2 " style="background-color:#f8f8f8">Category</th>
           <th class="px-4 py-2 " style="background-color:#f8f8f8">Action</th>
         </tr>
         </thead>
         <tbody class="text-sm font-normal text-gray-700">
-        <tr *ngFor="let category of categoriesArr"
+        <tr *ngFor="let tournament of tournamentsArr"
             class="hover:bg-gray-100 border-b border-gray-200 py-10">
-          <td class="px-4 py-4">{{category.id}}</td>
-          <td class="px-4 py-4">{{category.category_name}}</td>
-          <td class="px-4 py-4"><img src="{{category.category_img}}" alt="img_football" width="30" height="30"></td>
-          <td class="px-4 py-4 max-w-lg">{{category.category_description}}</td>
+          <td class="px-4 py-4">1</td>
+          <td class="px-4 py-4">{{tournament.name}}</td>
+          <td class="px-4 py-4">{{tournament.description}}</td>
+          <td class="px-4 py-4 max-w-lg">{{tournament.start_date}}</td>
+          <td class="px-4 py-4 max-w-lg">{{tournament.end_date}}</td>
+          <td class="px-4 py-4 max-w-lg">{{tournament.prize_fund}}</td>
+          <td class="px-4 py-4 max-w-lg">{{tournament.category_id.category_name}}</td>
           <td class="px-4 py-4">
-            <button type="button" (click)="editCategory(category)" class="inline-block rounded-lg mr-2 px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
+            <button type="button" (click)="editCategory(tournament)" class="inline-block rounded-lg mr-2 px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
               shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">Edit</button>
-            <button type="button" (click)="deleteCategory(category.id)" class="inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
+            <button type="button" (click)="deleteCategory(tournament.id)" class="inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
                 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">Delete</button>
           </td>
         <tr>
@@ -88,7 +94,7 @@
 
 
 <!--Show if showCreateCategory true-->
-<div *ngIf="showCreateCategory" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+<div *ngIf="showCreateTournament" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 
   <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
@@ -100,22 +106,22 @@
           <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div>
               <div class="mt-3 text-center sm:mt-0 m-x-4 sm:text-left">
-                <h3 *ngIf="category.category_name == undefined" class="text-lg font-medium leading-6 text-gray-900">Create new category</h3>
-                <h3 *ngIf="category.category_name != undefined" class="text-lg font-medium leading-6 text-gray-900">
-                  Edit category — {{category.category_name}}
+                <h3 *ngIf="tournament.name == undefined" class="text-lg font-medium leading-6 text-gray-900">Create new category</h3>
+                <h3 *ngIf="tournament.name != undefined" class="text-lg font-medium leading-6 text-gray-900">
+                  Edit category — {{tournament.name}}
                 </h3>
                 <label for="about" class="block mt-4 text-sm font-medium text-gray-700">Category name / image link</label>
                 <div class="mt-2 flex">
-                  <input type="text" [(ngModel)]="category.category_name" name="category_name" id="category_name"
+                  <input type="text" [(ngModel)]="tournament.name" name="category_name" id="category_name"
                          class="flex-auto w-full mr-2 rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Category name">
 
-                  <input type="text" [(ngModel)]="category.category_img" name="category_img" id="category_img"
+                  <input type="text" [(ngModel)]="tournament.start_date" name="category_img" id="category_img"
                          class="flex-auto w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Image link">
                 </div>
                 <div>
                   <label for="about" class="block mt-4 text-sm font-medium text-gray-700">Description</label>
                   <div class="mt-1">
-                    <textarea [(ngModel)]="category.category_description" id="about" name="about" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Enter description"></textarea>
+                    <textarea [(ngModel)]="tournament.description" id="about" name="about" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Enter description"></textarea>
                   </div>
                   <p class="mt-2 text-sm text-gray-500">Brief description for your profile. URLs are hyperlinked.</p>
                 </div>

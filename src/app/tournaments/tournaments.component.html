@@ -1,0 +1,64 @@
+
+<div class="grid grid-rows-3 grid-flow-col gap-4 mt-10">
+  <div class="row-span-3 bg-white p-10 shadow-sm rounded-xl ring-1 ring-slate-900/5 divide-y divide-slate-100">
+  </div>
+  <div class="row-span-2 col-span-2 relative z-10 bg-white rounded-xl shadow-sm ring-1 ring-slate-900/5 divide-y divide-slate-100 my-auto">
+    <nav class="py-4 px-4 sm:px-6 lg:px-4 xl:px-6 text-sm font-medium">
+      <div class="group relative rounded-md">
+        <svg width="20" height="20" fill="currentColor" class="absolute left-3 top-1/2 -mt-2.5 text-slate-400 pointer-events-none group-focus-within:text-blue-500">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"></path>
+        </svg>
+        <input type="text" aria-label="Filter projects" placeholder="Filter tournaments..."
+               class="appearance-none w-full text-sm leading-6 bg-transparent placeholder:text-slate-400
+               rounded-md py-2 pl-10 ring-1 ring-slate-200 shadow-sm focus:ring-2 border-none">
+      </div>
+    </nav>
+    <article *ngFor="let tournament of tournamentsArr" class="p-4 sm:p-6 lg:p-4 xl:p-6 space-x-4 items-start sm:space-x-6 lg:space-x-4 xl:space-x-6 flex">
+      <img src="{{tournament.category_id.category_img}}" loading="lazy" decoding="async" alt="" width="60"
+           height="88" class="flex-none rounded-md bg-slate-100">
+      <div class="min-w-0 relative flex-auto">
+        <h2 class="font-semibold text-slate-900 truncate sm:pr-20">{{tournament.name}}</h2>
+        <dl class="mt-2 flex flex-wrap text-sm leading-6 font-medium">
+          <div class="hidden absolute top-0 right-0 sm:flex items-center space-x-1">
+            <dt class="text-sky-500">
+              <span class="sr-only">{{tournament.prize_fund}}</span>
+              <svg width="16" height="20" fill="currentColor">
+                <path d="M7.05 3.691c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.372 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.539 1.118l-2.8-2.034a1 1 0 00-1.176 0l-2.8 2.034c-.783.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.363-1.118L.98 9.483c-.784-.57-.381-1.81.587-1.81H5.03a1 1 0 00.95-.69L7.05 3.69z"></path>
+              </svg>
+            </dt>
+            <dd>2.66</dd>
+          </div>
+          <div>
+            <dt class="sr-only">Rating</dt>
+            <dd class="px-1.5 ring-1 ring-slate-200 rounded">{{tournament.category_id.category_name}}</dd>
+          </div>
+          <div class="ml-2">
+            <dt class="sr-only">Date</dt>
+            <dd>{{tournament.start_date | date:'dd.MM.yyyy HH:mm '  : 'UTC' + 6}}</dd>
+          </div>
+          <div>
+            <dt class="sr-only">Category</dt>
+            <dd class="flex items-center">
+              <svg width="2" height="2" fill="currentColor" class="mx-2 text-slate-300" aria-hidden="true">
+                <circle cx="1" cy="1" r="1"></circle>
+              </svg>
+              to</dd>
+          </div>
+          <div>
+            <dt class="sr-only">End date</dt>
+            <dd class="flex items-center">
+              <svg width="2" height="2" fill="currentColor" class="mx-2 text-slate-300" aria-hidden="true">
+                <circle cx="1" cy="1" r="1"></circle>
+              </svg>
+              {{tournament.end_date | date:'dd.MM.yyyy HH:mm '  : 'UTC' + 6}}
+            </dd>
+          </div>
+          <div class="flex-none w-full mt-2 font-normal">
+            <dt class="sr-only">Description</dt>
+            <dd class="text-slate-400">{{tournament.description}}</dd>
+          </div>
+        </dl>
+      </div>
+    </article>
+  </div>
+</div>
