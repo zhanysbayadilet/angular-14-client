@@ -15,6 +15,7 @@ export class CategoryComponent implements OnInit {
   isLoggedIn = false;
   private roles: string[] = [];
   showCreateCategory: boolean = false;
+  showEditCategory: boolean = false;
   object:Object = Object.keys(this.category).length
 
   constructor(private categoryService: CategoryService,
@@ -43,8 +44,14 @@ export class CategoryComponent implements OnInit {
     this.showCreateCategory = true;
   }
 
+  editCategory(category: Category) {
+    this.showEditCategory = true;
+    this.category = category;
+  }
+
   hideCreateCategory() {
     this.showCreateCategory = false;
+    this.showEditCategory = false;
     this.category = new Category();
   }
 
@@ -66,10 +73,5 @@ export class CategoryComponent implements OnInit {
         this.categoryService.getCategories()
         window.location.reload();
       });
-  }
-
-  editCategory(category: Category) {
-    this.showCreateCategory = true;
-    this.category = category;
   }
 }
