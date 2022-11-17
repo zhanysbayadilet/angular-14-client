@@ -104,7 +104,8 @@
                 <h3 *ngIf="category.category_name != undefined" class="text-lg font-medium leading-6 text-gray-900">
                   Edit category — {{category.category_name}}
                 </h3>
-                <label for="about" class="block mt-4 text-sm font-medium text-gray-700">Category name / image link</label>
+                <label for="category_name" class="mt-4 text-sm font-medium text-gray-700">Category name / </label>
+                <label for="category_img" class="mt-4 text-sm font-medium text-gray-700">image link</label>
                 <div class="mt-2 flex">
                   <input type="text" [(ngModel)]="category.category_name" name="category_name" id="category_name"
                          class="flex-auto w-full mr-2 rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Category name">
