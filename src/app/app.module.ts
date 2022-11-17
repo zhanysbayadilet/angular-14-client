@@ -15,6 +15,9 @@ import { BoardUserComponent } from './board-user/board-user.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { CategoryComponent } from './board-admin/category/category.component';
+import { Page404Component } from './error-pages/page404/page404.component';
+import { TournamentsComponent } from './tournaments/tournaments.component';
+import { TournamentComponent } from './board-admin/tournament/tournament.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { CategoryComponent } from './board-admin/category/category.component';
     BoardAdminComponent,
     BoardModeratorComponent,
     BoardUserComponent,
-    CategoryComponent
+    CategoryComponent,
+    Page404Component,
+    TournamentsComponent,
+    TournamentComponent
   ],
   imports: [
     BrowserModule,

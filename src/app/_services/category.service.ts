@@ -21,6 +21,10 @@ export class CategoryService {
       );
   }
 
+  getCategory(id: number): Observable<Category>{
+    return this.http.get<Category>(this.API_URL + '/' + id)
+  }
+
   deleteCategory(id: number | undefined):Observable<Category[]>{
     return this.http.delete<Category[]>(this.API_URL + '/' + id)
       .pipe(

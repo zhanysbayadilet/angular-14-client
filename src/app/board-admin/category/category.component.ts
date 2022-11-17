@@ -15,6 +15,7 @@ export class CategoryComponent implements OnInit {
   isLoggedIn = false;
   private roles: string[] = [];
   showCreateCategory: boolean = false;
+  object:Object = Object.keys(this.category).length
 
   constructor(private categoryService: CategoryService,
               private tokenStorageService: TokenStorageService) { }
@@ -34,7 +35,6 @@ export class CategoryComponent implements OnInit {
     this.categoryService.getCategories().subscribe(
       categories => {
         this.categoriesArr = categories;
-        console.log('categoriesArr:' + this.categoriesArr);
       }
     )
   }
@@ -45,6 +45,7 @@ export class CategoryComponent implements OnInit {
 
   hideCreateCategory() {
     this.showCreateCategory = false;
+    this.category = new Category();
   }
 
   submit(){
@@ -53,7 +54,7 @@ export class CategoryComponent implements OnInit {
 
   saveCategory(){
     this.categoryService.createCategory(this.category).subscribe(
-      () => this.category //TODO
+      data => data = this.category
     );
     window.location.reload();
   }
