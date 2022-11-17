@@ -19,6 +19,7 @@ export class TournamentComponent implements OnInit {
   isLoggedIn = false;
   private roles: string[] = [];
   showCreateTournament: boolean = false;
+  showEditTournament: boolean = false;
   object:Object = Object.keys(this.tournament).length
 
   constructor(private tournamentService: TournamentService,
@@ -45,23 +46,38 @@ export class TournamentComponent implements OnInit {
     );
   }
 
-  createCategory() {
-
+  createTournamentForm() {
+    this.showCreateTournament = true;
   }
 
-  editCategory(tournament: Tournament) {
-
+  editTournamentForm(tournament: Tournament) {
+    this.showEditTournament = true;
+    this.tournament = tournament;
   }
 
-  deleteCategory(id: number) {
-
+  deleteTournament(id: number) {
+    this.tournamentService.deleteTournament(id)
+      .pipe()
+      .subscribe(()=>{
+        this.tournamentService.getTournaments()
+        window.location.reload();
+      });
   }
 
   submit() {
-
+    this.saveTournament();
   }
 
-  hideCreateCategory() {
+  saveTournament(){
+    this.tournamentService.createTournament(this.tournament).subscribe(
+      data => data = this.tournament
+    );
+    window.location.reload();
+  }
 
+  hideCreateTournament() {
+    this.showCreateTournament = false;
+    this.showEditTournament = false;
+    this.tournament = new Tournament();
   }
 }

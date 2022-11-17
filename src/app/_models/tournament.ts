@@ -7,5 +7,6 @@ export class Tournament{
   start_date: any
   end_date: any
   prize_fund: string
+  tournament_img: string
   category_id: Category
 }
