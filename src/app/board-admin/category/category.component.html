@@ -25,7 +25,7 @@
     </div>
     <div class="w-full flex justify-end px-2 mt-2">
       <div class="w-full sm:w-64 inline-block relative mr-2">
-        <input type="" name="" class="leading-snug border border-gray-300 block w-full appearance-none bg-gray-100 text-sm text-gray-600 px-3 py-2 px-4 pl-8 rounded-lg" placeholder="Search" />
+        <input type="" name="" [(ngModel)]="term" class="leading-snug border border-gray-300 block w-full appearance-none bg-gray-100 text-sm text-gray-600 px-3 py-2 px-4 pl-8 rounded-lg" placeholder="Search" />
         <div class="pointer-events-none absolute pl-3 inset-y-0 left-0 flex items-center px-2 text-gray-300">
 
           <svg class="fill-current h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.999 511.999">
@@ -50,7 +50,7 @@
         </tr>
         </thead>
         <tbody class="text-sm font-normal text-gray-700">
-        <tr *ngFor="let category of categoriesArr"
+        <tr *ngFor="let category of categoriesArr | filterCategory: term"
             class="hover:bg-gray-100 border-b border-gray-200 py-10">
           <td class="px-4 py-4">{{category.id}}</td>
           <td class="px-4 py-4">{{category.category_name}}</td>

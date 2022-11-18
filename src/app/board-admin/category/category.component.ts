@@ -17,6 +17,7 @@ export class CategoryComponent implements OnInit {
   showCreateCategory: boolean = false;
   showEditCategory: boolean = false;
   object:Object = Object.keys(this.category).length
+  term = ''
 
   constructor(private categoryService: CategoryService,
               private tokenStorageService: TokenStorageService) { }

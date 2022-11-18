@@ -20,7 +20,8 @@ export class TournamentComponent implements OnInit {
   private roles: string[] = [];
   showCreateTournament: boolean = false;
   showEditTournament: boolean = false;
-  object:Object = Object.keys(this.tournament).length
+  object:Object = Object.keys(this.tournament).length;
+  term = '';
 
   constructor(private tournamentService: TournamentService,
               private categoryService: CategoryService,
