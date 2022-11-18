@@ -11,6 +11,7 @@ import {TournamentService} from "../_services/tournament.service";
 export class TournamentsComponent implements OnInit {
 
   tournamentsArr: Tournament[] = [];
+  term = '';
 
   constructor(private tournamentService: TournamentService) { }
 

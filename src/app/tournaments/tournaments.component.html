@@ -8,12 +8,12 @@
         <svg width="20" height="20" fill="currentColor" class="absolute left-3 top-1/2 -mt-2.5 text-slate-400 pointer-events-none group-focus-within:text-blue-500">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"></path>
         </svg>
-        <input type="text" aria-label="Filter projects" placeholder="Filter tournaments..."
+        <input type="text" [(ngModel)]="term" aria-label="Filter projects" placeholder="Filter tournaments..."
                class="appearance-none w-full text-sm leading-6 bg-transparent placeholder:text-slate-400
                rounded-md py-2 pl-10 ring-1 ring-slate-200 shadow-sm focus:ring-2 border-none">
       </div>
     </nav>
-    <article *ngFor="let tournament of tournamentsArr" class="p-4 sm:p-6 lg:p-4 xl:p-6 space-x-4 items-start sm:space-x-6 lg:space-x-4 xl:space-x-6 flex">
+    <article *ngFor="let tournament of tournamentsArr | filterTournament: term" class="p-4 sm:p-6 lg:p-4 xl:p-6 space-x-4 items-start sm:space-x-6 lg:space-x-4 xl:space-x-6 flex">
       <img src="{{tournament.category_id.category_img}}" loading="lazy" decoding="async" alt="" width="60"
            height="88" class="flex-none rounded-md bg-slate-100">
       <div class="min-w-0 relative flex-auto">

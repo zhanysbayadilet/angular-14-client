@@ -18,6 +18,8 @@ import { CategoryComponent } from './board-admin/category/category.component';
 import { Page404Component } from './error-pages/page404/page404.component';
 import { TournamentsComponent } from './tournaments/tournaments.component';
 import { TournamentComponent } from './board-admin/tournament/tournament.component';
+import {FilterTournamentPipe} from "./pipes/filter-tournament.pipe";
+import {FilterCategoryPipe} from "./pipes/filter-category.pipe";
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { TournamentComponent } from './board-admin/tournament/tournament.compone
     CategoryComponent,
     Page404Component,
     TournamentsComponent,
-    TournamentComponent
+    TournamentComponent,
+    FilterTournamentPipe,
+    FilterCategoryPipe
   ],
   imports: [
     BrowserModule,
