@@ -25,7 +25,8 @@ const routes: Routes = [
   { path: 'admin', component: BoardAdminComponent },
   { path: 'admin/category', component: CategoryComponent },
   { path: 'admin/users', component: UsersComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'tournaments/:tournamentId'}
 ];
 
 @NgModule({
