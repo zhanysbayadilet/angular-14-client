@@ -12,6 +12,7 @@ import {CategoryComponent} from "./board-admin/category/category.component";
 import {TournamentsComponent} from "./tournaments/tournaments.component";
 import {TournamentComponent} from "./board-admin/tournament/tournament.component";
 import {UsersComponent} from "./board-admin/users/users.component";
+import {CategoriesComponent} from "./categories/categories.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,8 +26,8 @@ const routes: Routes = [
   { path: 'admin', component: BoardAdminComponent },
   { path: 'admin/category', component: CategoryComponent },
   { path: 'admin/users', component: UsersComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'tournaments/:tournamentId'}
+  { path: 'category', component: CategoriesComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
