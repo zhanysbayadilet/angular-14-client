@@ -20,7 +20,9 @@ import { TournamentsComponent } from './tournaments/tournaments.component';
 import { TournamentComponent } from './board-admin/tournament/tournament.component';
 import {FilterTournamentPipe} from "./pipes/filter-tournament.pipe";
 import {FilterCategoryPipe} from "./pipes/filter-category.pipe";
+import {FilterUserPipe} from "./pipes/filter-user.pipe";
 import { NavbarComponent } from './board-admin/navbar/navbar.component';
+import { UsersComponent } from './board-admin/users/users.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { NavbarComponent } from './board-admin/navbar/navbar.component';
     TournamentComponent,
     FilterTournamentPipe,
     FilterCategoryPipe,
-    NavbarComponent
+    FilterUserPipe,
+    NavbarComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
