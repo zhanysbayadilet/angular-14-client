@@ -17,12 +17,13 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { CategoryComponent } from './board-admin/category/category.component';
 import { Page404Component } from './error-pages/page404/page404.component';
 import { TournamentsComponent } from './tournaments/tournaments.component';
-import { TournamentComponent } from './board-admin/tournament/tournament.component';
 import {FilterTournamentPipe} from "./pipes/filter-tournament.pipe";
 import {FilterCategoryPipe} from "./pipes/filter-category.pipe";
 import {FilterUserPipe} from "./pipes/filter-user.pipe";
 import { NavbarComponent } from './board-admin/navbar/navbar.component';
 import { UsersComponent } from './board-admin/users/users.component';
+import { CategoriesComponent } from './categories/categories.component';
+import {TournamentComponent} from "./board-admin/tournament/tournament.component";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { UsersComponent } from './board-admin/users/users.component';
     FilterCategoryPipe,
     FilterUserPipe,
     NavbarComponent,
-    UsersComponent
+    UsersComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
