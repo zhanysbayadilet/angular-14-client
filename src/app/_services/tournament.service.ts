@@ -32,7 +32,7 @@ export class TournamentService {
       );
   }
 
-  createTournament(tournament: Tournament):Observable<Object> {
-    return this.http.post(this.API_URL, tournament)
+  saveTournament(tournament: Tournament):Observable<Tournament> {
+    return this.http.post<Tournament>(this.API_URL + '/save', tournament)
   }
 }

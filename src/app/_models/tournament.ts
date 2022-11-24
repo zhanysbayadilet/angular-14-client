@@ -4,9 +4,9 @@ export class Tournament{
   id: number
   name: string
   description: string
-  start_date: any
-  end_date: any
+  start_date: Date
+  end_date: Date
   prize_fund: string
   tournament_img: string
-  category_id: Category
+  category: Category
 }

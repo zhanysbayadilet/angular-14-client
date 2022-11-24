@@ -6,8 +6,17 @@ import {Tournament} from "../_models/tournament";
 })
 export class FilterTournamentPipe implements PipeTransform {
 
-  transform(products: Tournament[], search: string): Tournament[] {
-    return products.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
+  transform(tournaments: Tournament[], search?: any): any {
+    if (!tournaments) return null;
+    if (!search) return tournaments;
+
+    return tournaments.filter(t => t.id.toString().toLowerCase().includes(search.toLowerCase())
+      || t.name.toString().toLowerCase().includes(search.toLowerCase())
+      || t.start_date.toString().toLowerCase().includes(search.toLowerCase())
+      || t.category.category_name.toString().toLowerCase().includes(search.toLowerCase())
+      || t.prize_fund.toString().toLowerCase().includes(search.toLowerCase())
+    );
+
   }
 
 }

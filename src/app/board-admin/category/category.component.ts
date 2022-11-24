@@ -61,7 +61,7 @@ export class CategoryComponent implements OnInit {
   }
 
   saveCategory(){
-    this.categoryService.createCategory(this.category).subscribe(
+    this.categoryService.saveCategory(this.category).subscribe(
       data => data = this.category
     );
     window.location.reload();
