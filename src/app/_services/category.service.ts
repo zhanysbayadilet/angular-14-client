@@ -22,17 +22,14 @@ export class CategoryService {
   }
 
   getCategory(id: number): Observable<Category>{
-    return this.http.get<Category>(this.API_URL + '/' + id)
+    return this.http.get<Category>(this.API_URL + '/' + id);
   }
 
   deleteCategory(id: number | undefined):Observable<Category[]>{
-    return this.http.delete<Category[]>(this.API_URL + '/' + id)
-      .pipe(
-        tap(categories => this.categoryArr = categories)
-      );
+    return this.http.delete<Category[]>(this.API_URL + '/' + id);
   }
 
-  createCategory(category: Category):Observable<Object> {
-    return this.http.post(this.API_URL, category)
+  saveCategory(category: Category):Observable<Object> {
+    return this.http.post(this.API_URL + '/save', category);
   }
 }

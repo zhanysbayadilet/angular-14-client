@@ -14,6 +14,7 @@ import {Observable} from "rxjs";
 export class TournamentComponent implements OnInit {
   tournamentsArr: Tournament[] = [];
   tournament: Tournament = new Tournament();
+  categoriesArr: Category[] = []
   category: Observable<Category> = new Observable<Category>();
   showAdminBoard = false;
   isLoggedIn = false;
@@ -25,7 +26,8 @@ export class TournamentComponent implements OnInit {
 
   constructor(private tournamentService: TournamentService,
               private categoryService: CategoryService,
-              private tokenStorageService: TokenStorageService) { }
+              private tokenStorageService: TokenStorageService) {
+  }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -34,8 +36,16 @@ export class TournamentComponent implements OnInit {
       this.roles = user.roles;
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
     }
-
     this.getAllTournaments();
+    this.getAllCategories();
+  }
+
+  private getAllCategories(){
+    this.categoryService.getCategories().subscribe(
+      categories => {
+        this.categoriesArr = categories;
+      }
+    )
   }
 
   public getAllTournaments(){
@@ -70,7 +80,10 @@ export class TournamentComponent implements OnInit {
   }
 
   saveTournament(){
-    this.tournamentService.createTournament(this.tournament).subscribe(
+    console.log(this.tournament.category);
+    console.log(this.tournament);
+    console.log(this.category);
+    this.tournamentService.saveTournament(this.tournament).subscribe(
       data => data = this.tournament
     );
     window.location.reload();

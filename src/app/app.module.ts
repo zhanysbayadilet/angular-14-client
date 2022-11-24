@@ -20,6 +20,7 @@ import { TournamentsComponent } from './tournaments/tournaments.component';
 import { TournamentComponent } from './board-admin/tournament/tournament.component';
 import {FilterTournamentPipe} from "./pipes/filter-tournament.pipe";
 import {FilterCategoryPipe} from "./pipes/filter-category.pipe";
+import { NavbarComponent } from './board-admin/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {FilterCategoryPipe} from "./pipes/filter-category.pipe";
     TournamentsComponent,
     TournamentComponent,
     FilterTournamentPipe,
-    FilterCategoryPipe
+    FilterCategoryPipe,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
