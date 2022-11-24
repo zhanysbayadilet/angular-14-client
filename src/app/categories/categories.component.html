@@ -1,0 +1,42 @@
+<div class="relative px-4 sm:px-8 lg:px-12 mt-16">
+  <div class="mx-auto max-w-2xl lg:max-w-5xl">
+    <header class="flex items-center flex-col">
+      <h1 class="text-4xl font-bold tracking-tight text-black sm:text-5xl">
+        Categories
+      </h1>
+      <p class="mt-2 text-base text-zinc-600 dark:text-zinc-400">
+        I’ve worked on tons of little projects over the years.
+      </p>
+    </header>
+    <div class="grid grid-cols-3 gap-x-14">
+      <div class="grid-cols-3 mt-16 sm:mt-20" *ngFor="let category of categoriesArr">
+        <ul role="list" class="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-1 lg:grid-cols-1">
+          <li class="group relative flex flex-col items-start">
+            <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md
+            shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50">
+              <img alt="" src="{{category.category_img}}" width="32" height="32" decoding="async"
+                   data-nimg="1" class="h-8 w-8" loading="lazy" style="color: transparent;">
+            </div>
+            <h2 class="mt-6 text-base font-semibold text-zinc-800">
+              <div class="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition
+              group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-200/50 sm:-inset-x-6 sm:rounded-2xl">
+              </div>
+              <a href="#">
+                <span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
+                <span class="relative z-10">{{category.category_name}}</span>
+              </a>
+            </h2>
+            <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+              {{category.category_description}}
+            </p>
+            <p class="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-blue-500
+              dark:text-zinc-200">
+              <span class="mr-1">Go to</span>
+              <span aria-hidden="true">&rarr;</span>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
