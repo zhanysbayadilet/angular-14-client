@@ -11,6 +11,7 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import {CategoryComponent} from "./board-admin/category/category.component";
 import {TournamentsComponent} from "./tournaments/tournaments.component";
 import {TournamentComponent} from "./board-admin/tournament/tournament.component";
+import {UsersComponent} from "./board-admin/users/users.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'admin/tournament', component: TournamentComponent },
   { path: 'admin', component: BoardAdminComponent },
   { path: 'admin/category', component: CategoryComponent },
+  { path: 'admin/users', component: UsersComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
