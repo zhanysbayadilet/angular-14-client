@@ -32,21 +32,21 @@ export class UserService {
   }
 
   getUsers(): Observable<User[]>{
-    return this.http.get<User[]>(this.API_URL2 + '/all')
+    return this.http.get<User[]>(this.API_URL2 + 'all')
       .pipe(
         tap(users => this.userArr = users)
       );
   }
 
   getUser(id: number): Observable<User>{
-    return this.http.get<User>(this.API_URL2 + '/' + id);
+    return this.http.get<User>(this.API_URL2 + id);
   }
 
   deleteUser(id: number | undefined):Observable<User[]>{
-    return this.http.delete<User[]>(this.API_URL2 + '/' + id);
+    return this.http.delete<User[]>(this.API_URL2 + id);
   }
 
   saveUser(user: User):Observable<Object> {
-    return this.http.post(this.API_URL2 + '/save', user);
+    return this.http.post(this.API_URL2 + 'save', user);
   }
 }
