@@ -1,59 +1,51 @@
-<div id="app" class="px-10 py-2">
+<div id="app" class="mx-16">
   <!-- This example requires Tailwind CSS v3.0+ -->
   <div class="bg-white">
-<!--    <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">-->
-<!--      <svg class="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]" viewBox="0 0 1155 678" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--        <path fill="url(#45de2b6b-92d5-4d68-a6a0-9b9b2abad533)" fill-opacity=".3" d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z" />-->
-<!--        <defs>-->
-<!--          <linearGradient id="45de2b6b-92d5-4d68-a6a0-9b9b2abad533" x1="1155.49" x2="-78.208" y1=".177" y2="474.645" gradientUnits="userSpaceOnUse">-->
-<!--            <stop stop-color="#9089FC"></stop>-->
-<!--            <stop offset="1" stop-color="#1c32fc"></stop>-->
-<!--          </linearGradient>-->
-<!--        </defs>-->
-<!--      </svg>-->
-<!--    </div>-->
-    <div class="px-6 pt-6 lg:px-8">
+    <div class="pt-6">
       <div>
         <nav class="flex h-9 items-center justify-between" aria-label="Global">
-          <div class="flex lg:min-w-0 lg:flex-1" aria-label="Global">
+          <div class="flex" aria-label="Global">
             <a href="#" class="-m-1.5 p-1.5 flex items-center">
               <img class="h-8" src="/assets/logo.png" alt="Logo">
             </a>
           </div>
-          <div class="flex lg:hidden">
-            <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
-              <span class="sr-only">Open main menu</span>
-              <!-- Heroicon name: outline/bars-3 -->
-              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-              </svg>
-            </button>
+
+          <div class="flex justify-center gap-x-12">
+            <a href="category" class="navbar-buttons">Categories</a>
+            <a href="tournaments" class="navbar-buttons">Tournaments</a>
+            <a href="#" class="navbar-buttons">Organizations</a>
           </div>
-          <div class="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-center lg:gap-x-12">
-            <a href="category" class="font-semibold text-gray-900 hover:text-gray-900">Categories</a>
 
-            <a href="tournaments" class="font-semibold text-gray-900 hover:text-gray-900">Competistions</a>
-
-            <a href="#" class="font-semibold text-gray-900 hover:text-gray-900">Organizations</a>
-
-            <a href="#" class="font-semibold text-gray-900 hover:text-gray-900"></a>
+          <div *ngIf="!isLoggedIn">
+            <a href="/login" class="flex gap-2 inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
+            shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+              <span>Log in</span>
+              <img src="/assets/vuesax/linear/login.svg" alt="login">
+            </a>
           </div>
-          <div class="hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end">
-            <a *ngIf="!isLoggedIn" href="/login" class="inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
-            shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">Log in</a>
-            <div *ngIf="isLoggedIn">
-              <a href="/admin/category" *ngIf="showAdminBoard" class="mr-2 inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
-              shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20" routerLink="admin/category">Admin board</a>
-              <a href="/profile" class="mr-2 inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
-              shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20" routerLink="profile">{{ username }}</a>
-              <a href (click)="logout()" class="inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
-              shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">Log out</a>
+
+          <div *ngIf="isLoggedIn" class="flex items-center">
+            <div class="relative">
+              <div (click)="isOpen = !isOpen" class="container flex justify-center mx-auto">
+                <div class="relative">
+                  <img src="/assets/vuesax/linear/user-tick.svg" alt="login">
+                  <span class="absolute right-0 w-3 h-3 bg-blue-600 border-2 border-white rounded-full top-3 animate-pulse"></span>
+                </div>
+              </div>
+
+              <!-- Menu list -->
+              <div *ngIf="isOpen" class="absolute text-end border ani-dropdown right-0 z-20 w-36 mt-2 overflow-hidden bg-white rounded-md shadow-lg">
+                <a href="/profile" class="block px-4 py-2 text-sm text-gray-800 transition-colors duration-300 transform border-b hover:bg-gray-200">{{ username }}</a>
+                <a href="/admin/category" class="block px-4 py-2 text-sm text-gray-800 transition-colors duration-300 transform border-b hover:bg-gray-200">Admin board</a>
+                <a href (click)="logout()" class="block px-4 py-2 text-sm text-gray-800 transition-colors duration-300 transform hover:bg-gray-200">Logout</a>
+              </div>
             </div>
           </div>
+
         </nav>
         <!-- Mobile menu, show/hide based on menu open state. -->
         <div role="dialog" aria-modal="true">
-          <div focus="true" class="fixed inset-0 z-10 overflow-y-auto bg-white px-6 py-6 lg:hidden">
+          <div class="fixed inset-0 z-10 overflow-y-auto bg-white px-6 py-6 lg:hidden">
             <div class="flex h-9 items-center justify-between">
               <div class="flex">
                 <a href="#" class="-m-1.5 p-1.5">
@@ -106,35 +98,4 @@
       </div>
     </footer>
   </div>
-
-
-  <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-
-<!--    <ul *ngIf="!isLoggedIn" class="flex gap-5">-->
-<!--      <li class="nav-item">-->
-<!--        <a href="/login" routerLink="login" class="flex px-3 py-2 rounded-full">-->
-<!--          <span class="mr-2 text-black-800 font-light">Sign in</span>-->
-<!--          <div class="icon" data-v-4f572658="">-->
-<!--            <img src="./assets/icons/login.svg" alt="Login" data-v-4f572658="">-->
-<!--          </div>-->
-<!--        </a>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--    <ul *ngIf="isLoggedIn" class="flex gap-5">-->
-<!--      <li>-->
-<!--        <a href="/profile" class="py-1" routerLink="profile">{{ username }}</a>-->
-<!--      </li>-->
-<!--      <li>-->
-<!--        <a href (click)="logout()" class="flex px-3 py-1 rounded-full">-->
-<!--          <div class="icon" data-v-4f572658="">-->
-<!--            <img src="./assets/icons/logout.svg" alt="Login" data-v-4f572658="">-->
-<!--          </div>-->
-<!--        </a>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--  </nav>-->
-
-<!--  <div>-->
-<!--    <router-outlet></router-outlet>-->
-<!--  </div>-->
 </div>

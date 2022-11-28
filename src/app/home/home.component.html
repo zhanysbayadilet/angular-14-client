@@ -1,16 +1,16 @@
-<main>
-<!--  <p>{{ content }}</p>-->
-  <div class="relative px-6 lg:px-8">
-    <div class="mx-auto max-w-3xl pt-20 pb-32 sm:pt-36 sm:pb-40">
+<section class="pt-36 pb-44 header">
+  <div class="relative px-6">
+    <div class="mx-auto max-w-3xl">
       <div>
         <div class="hidden sm:mb-8 sm:flex sm:justify-center">
           <div class="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
               <span class="text-gray-600">
-                The card for participation in competitions. <a href="#" class="font-semibold text-blue-600">
+                The card for participation in competitions. <a href="usermap" class="font-semibold text-blue-600">
                 <span class="absolute inset-0" aria-hidden="true"></span>View card <span aria-hidden="true">&rarr;</span></a>
               </span>
           </div>
         </div>
+
         <div>
           <h1 class="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">Start realizing yourself right now.</h1>
           <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
@@ -28,60 +28,46 @@
             </a>
           </div>
         </div>
-        <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
-          <svg class="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]" viewBox="0 0 1155 678" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill="url(#ecb5b0c9-546c-4772-8c71-4d3f06d544bc)" fill-opacity=".3" d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z" />
-            <defs>
-              <linearGradient id="ecb5b0c9-546c-4772-8c71-4d3f06d544bc" x1="1155.49" x2="-78.208" y1=".177" y2="474.645" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#9089FC"></stop>
-                <stop offset="1" stop-color="#FF80B5"></stop>
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
       </div>
     </div>
   </div>
-</main>
+</section>
 
-<div class="relative px-4 sm:px-8 lg:px-12">
-  <div class="mx-auto max-w-2xl lg:max-w-5xl">
-    <header class="max-w-2xl">
-      <h1 class="text-4xl font-bold tracking-tight text-black sm:text-5xl">
+<section class="relative pb-28 header">
+  <div>
+    <header class="text-start">
+      <h1 class="text-5xl font-bold tracking-tight text-black">
         Categories
       </h1>
-      <p class="mt-2 text-base text-zinc-600 dark:text-zinc-400">
+      <p class="mt-2 text-base text-zinc-600">
         I’ve worked on tons of little projects over the years.
       </p>
     </header>
-    <div class="grid grid-cols-3 gap-x-14">
-      <div class="grid-cols-3 mt-16 sm:mt-20" *ngFor="let category of categoriesArr | slice:0:6;">
-        <ul role="list" class="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-1 lg:grid-cols-1">
-          <li class="group relative flex flex-col items-start">
-            <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md
-            shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50">
-              <img alt="" src="{{category.category_img}}" width="32" height="32" decoding="async"
-                   data-nimg="1" class="h-8 w-8" loading="lazy" style="color: transparent;">
-            </div>
-            <h2 class="mt-6 text-base font-semibold text-zinc-800">
-              <div class="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition
+    <div class="grid grid-cols-3 gap-6 mt-8">
+      <div class="grid-cols-3 p-6 border rounded-2xl" *ngFor="let category of categoriesArr | slice:0:6;">
+        <div class="group relative flex flex-col items-start">
+          <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md
+          shadow-zinc-800/5 ring-zinc-900/5 border border-zinc-700/50">
+            <img alt="" src="{{category.category_img}}" width="32" height="32" decoding="async"
+                 data-nimg="1" class="h-8 w-8" loading="lazy" style="color: transparent;">
+          </div>
+          <h2 class="mt-6 text-base font-semibold text-zinc-800">
+            <div class="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition
               group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-200/50 sm:-inset-x-6 sm:rounded-2xl">
-              </div>
-              <a href="#">
-                <span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
-                <span class="relative z-10">{{category.category_name}}</span>
-              </a>
-            </h2>
-            <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-              {{category.category_description}}
-            </p>
-            <p class="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-blue-500
-              dark:text-zinc-200">
-              <span class="mr-1">Go to</span>
-              <span aria-hidden="true">&rarr;</span>
-            </p>
-          </li>
-        </ul>
+            </div>
+            <a href="/tournaments">
+              <span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
+              <span class="relative z-10">{{category.category_name}}</span>
+            </a>
+          </h2>
+          <p class="relative z-10 mt-2 text-sm text-zinc-600">
+            {{category.category_description}}
+          </p>
+          <p class="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-blue-500">
+            <span class="mr-1">Go to</span>
+            <span aria-hidden="true">&rarr;</span>
+          </p>
+        </div>
       </div>
     </div>
     <div class="mt-10 flex justify-center">
@@ -90,5 +76,87 @@
       </a>
     </div>
   </div>
-</div>
+</section>
+
+<section class="text-gray-600 body-font pb-20 header">
+  <header class="text-start">
+    <h1 class="text-5xl font-bold tracking-tight text-black">
+      Our values
+    </h1>
+    <p class="mt-2 text-base text-zinc-600">
+      I’ve worked on tons of little projects over the years.
+    </p>
+  </header>
+  <div class="container mt-4 mx-auto">
+    <div class="grid grid-cols-4 gap-4 text-center">
+      <div class="p-4 border rounded-lg">
+        <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900">2.7K</h2>
+        <p class="leading-relaxed">Users</p>
+      </div>
+      <div class="p-4 border rounded-lg">
+        <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900">1.8K</h2>
+        <p class="leading-relaxed">Tournaments</p>
+      </div>
+      <div class="p-4 border rounded-lg">
+        <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900">87</h2>
+        <p class="leading-relaxed">Organizations</p>
+      </div>
+      <div class="p-4 border rounded-lg">
+        <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900">4</h2>
+        <p class="leading-relaxed">Partners</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="text-gray-600 body-font header">
+  <div class="container mx-auto">
+    <header class="text-start">
+      <h1 class="text-5xl font-bold tracking-tight text-black">
+        Our team
+      </h1>
+      <p class="mt-2 text-base text-zinc-600">
+        I’ve worked on tons of little projects over the years.
+      </p>
+    </header>
+  </div>
+</section>
+
+<section class="text-gray-600 body-font relative header">
+  <div class="container py-18 mx-auto">
+    <header class="text-start">
+      <h1 class="text-5xl font-bold tracking-tight text-black">
+        Contact Us
+      </h1>
+      <p class="mt-2 text-base text-zinc-600">
+        I’ve worked on tons of little projects over the years.
+      </p>
+    </header>
+    <div class="lg:w-1/2 md:w-2/3 mx-auto">
+      <div class="flex flex-wrap -m-2">
+        <div class="p-2 w-1/2">
+          <div class="relative">
+            <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
+            <input type="text" id="name" name="name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+          </div>
+        </div>
+        <div class="p-2 w-1/2">
+          <div class="relative">
+            <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+            <input type="email" id="email" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+          </div>
+        </div>
+        <div class="p-2 w-full">
+          <div class="relative">
+            <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
+            <textarea id="message" name="message" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+          </div>
+        </div>
+        <div class="p-2 w-full">
+          <button class="flex mx-auto text-white bg-blue-600 border-0 py-2 px-8 focus:outline-none hover:bg-blue-700 rounded-lg text-lg">Button</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 

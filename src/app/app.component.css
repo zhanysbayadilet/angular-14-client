@@ -1,0 +1,13 @@
+.navbar-buttons{
+  @apply font-semibold rounded-lg px-3 py-1.5 border border-white text-gray-900 hover:text-gray-900 hover:border-gray-400;
+}
+
+.ani-dropdown {
+  opacity: 0;
+  animation: ani 0.4s forwards;
+}
+
+@keyframes ani {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}

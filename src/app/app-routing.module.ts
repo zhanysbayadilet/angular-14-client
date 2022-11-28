@@ -12,6 +12,8 @@ import {CategoryComponent} from "./board-admin/category/category.component";
 import {TournamentsComponent} from "./tournaments/tournaments.component";
 import {TournamentComponent} from "./board-admin/tournament/tournament.component";
 import {UsersComponent} from "./board-admin/users/users.component";
+import {TournamentDetailComponent} from "./tournaments/tournament-detail/tournament-detail.component";
+import {UserMapComponent} from "./user-map/user-map.component";
 import {CategoriesComponent} from "./categories/categories.component";
 
 const routes: Routes = [
@@ -26,6 +28,9 @@ const routes: Routes = [
   { path: 'admin', component: BoardAdminComponent },
   { path: 'admin/category', component: CategoryComponent },
   { path: 'admin/users', component: UsersComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'tournaments/:tournamentId', component: TournamentDetailComponent},
+  { path: 'usermap', component: UserMapComponent},
   { path: 'category', component: CategoriesComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

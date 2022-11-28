@@ -11,6 +11,7 @@ import {Category} from "../_models/category";
 export class HomeComponent implements OnInit {
   content?: string;
   categoriesArr: Category[] = [];
+  isOpen: boolean;
 
   constructor(private userService: UserService, private categoryService: CategoryService) { }
 

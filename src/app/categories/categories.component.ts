@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Category} from "../_models/category";
 import {CategoryService} from "../_services/category.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-categories',
@@ -9,8 +10,10 @@ import {CategoryService} from "../_services/category.service";
 })
 export class CategoriesComponent implements OnInit {
   categoriesArr: Category[] = [];
+  term = '';
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -20,9 +23,11 @@ export class CategoriesComponent implements OnInit {
     this.categoryService.getCategories().subscribe(
       categories => {
         this.categoriesArr = categories;
-        console.log('categoriesArr:' + this.categoriesArr);
       }
     )
   }
 
+  goToTournaments() {
+    this.router.navigate([`/tournaments`]);
+  }
 }

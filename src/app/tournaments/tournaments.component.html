@@ -1,23 +1,15 @@
-
-<div class="grid gap-4 grid-cols-3 mt-10">
-  <div class="fixed w-96 bg-white py-4 px-4 shadow-sm rounded-xl ring-1 ring-slate-900/5 divide-y divide-slate-100">
-    <div>
-      <h1 class="py-1 px-1.5 text-sm text-gray-700">Categories</h1>
-      <select [(ngModel)]="category" class="bg-gray-50 border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2">
-        <option value="">All</option>
-        <option *ngFor="let category of categories" [value]="category.category_name">{{category.category_name}}</option>
-      </select>
-    </div>
-    <h1 class="py-1 px-1.5 text-sm text-gray-700 border-none">Start date</h1>
-    <div class="border-none">
-      <input type="Date" [(ngModel)]="date" name="start_date" id="start_date"
-             class="flex-auto w-full py-2 rounded-md border-gray-200 focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Start date">
-    </div>
-  </div>
-  <div></div>
-  <div class="col-span-2 relative z-10 bg-white rounded-xl shadow-sm border border-gray-200">
-    <nav class="py-4 px-4 text-sm font-medium">
-      <div class="group relative rounded-md">
+<div class="mx-36 mt-10">
+  <header class="flex items-center flex-col mb-2">
+    <h1 class="text-4xl font-bold tracking-tight text-black sm:text-5xl">
+      Tournaments
+    </h1>
+    <p class="mt-2 text-base text-zinc-600 dark:text-zinc-400">
+      I’ve worked on tons of little projects over the years.
+    </p>
+  </header>
+  <div class="relative z-10">
+    <nav class="flex gap-2 text-sm font-medium">
+      <div class="grow relative rounded-md">
         <svg width="20" height="20" fill="currentColor" class="absolute left-3 top-1/2 -mt-2.5 text-slate-400 pointer-events-none group-focus-within:text-blue-500">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"></path>
         </svg>
@@ -25,9 +17,16 @@
                class="appearance-none w-full text-sm leading-6 bg-transparent placeholder:text-slate-400
                rounded-md py-2 pl-10 ring-1 ring-slate-200 shadow-sm focus:ring-2 border-none">
       </div>
+      <input type="Date" [(ngModel)]="date" name="start_date" id="start_date"
+             class="flex-none w-36 py-2 rounded-md border-gray-200 focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Start date">
+      <select [(ngModel)]="category" class="flex-none w-36 bg-gray-50 border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2">
+        <option value="">All</option>
+        <option *ngFor="let category of categories" [value]="category.category_name">{{category.category_name}}</option>
+      </select>
     </nav>
     <article *ngFor="let tournament of tournaments | filterTournament: date || term || category"
-             class="p-4 sm:p-6 lg:p-4 xl:p-6 space-x-4 items-start sm:space-x-6 lg:space-x-4 xl:space-x-6 flex
+             (click)="goToTournament(tournament.id)"
+             class="border rounded-md my-2 p-4 space-x-4 items-start sm:space-x-6 flex
              hover:bg-gray-100 transition duration-100 ease-in-out">
       <div class="min-w-0 relative flex-auto">
         <h2 class="font-semibold text-slate-900 truncate sm:pr-20">{{tournament.name}}</h2>
