@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   showModeratorBoard = false;
   username?: string;
   name?: string;
+  isOpen: boolean;
 
   constructor(private tokenStorageService: TokenStorageService) { }
 
@@ -34,4 +35,5 @@ export class AppComponent implements OnInit {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
+
 }

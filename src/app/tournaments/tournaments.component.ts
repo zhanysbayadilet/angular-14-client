@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {TournamentComponent} from "../board-admin/tournament/tournament.component";
 import {Tournament} from "../_models/tournament";
 import {TournamentService} from "../_services/tournament.service";
 import {CategoryService} from "../_services/category.service";
 import {Category} from "../_models/category";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-tournaments',
@@ -19,7 +19,8 @@ export class TournamentsComponent implements OnInit {
   category = '';
 
   constructor(private tournamentService: TournamentService,
-              private categoryService: CategoryService) { }
+              private categoryService: CategoryService,
+              public router: Router) { }
 
   ngOnInit(): void {
     this.getAllTournaments();
@@ -44,5 +45,7 @@ export class TournamentsComponent implements OnInit {
     )
   }
 
-
+  goToTournament(tournamentId: number) {
+    this.router.navigate([`/tournaments/${tournamentId}`]);
+  }
 }

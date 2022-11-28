@@ -1,0 +1,93 @@
+<div class="mx-36 mt-10">
+  <header class="flex items-center flex-col mb-4">
+    <p class="mt-2 text-base text-zinc-600 dark:text-zinc-400">
+    {{tournament.start_date | date:'dd.MM.yyyy HH:mm '  : 'UTC' + 6}}
+    </p>
+    <h1 class="text-4xl font-bold tracking-tight text-black sm:text-5xl">
+      {{tournament.name}}
+    </h1>
+  </header>
+  <div class="grid grid-cols-6 border-t">
+    <div class="col-span-2 grid-cols-1">
+      <div class="border-b py-12 flex items-center gap-2">
+        <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md
+            shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50">
+          <img alt="" src="./assets/user.svg" width="32" height="32" decoding="async"
+               data-nimg="1" class="h-8 w-8" loading="lazy" style="color: transparent;">
+        </div>
+        <div>
+          <h1>Nurlan Saburov</h1>
+          <h3 class="text-blue-700 text-sm">@nurlan_saburov</h3>
+        </div>
+      </div>
+      <div class="border-b py-12">
+        <h3 class="text-sm text-gray-500">Category</h3>
+        <h4>{{category.category_name}}</h4>
+      </div>
+      <div class="border-b py-12">
+        <h3 class="text-sm text-gray-500">Start date</h3>
+        <h4 class="mb-4">{{tournament.start_date | date:'dd.MM.yyyy HH:mm '  : 'UTC' + 6}}</h4>
+
+        <h3 class="text-sm text-gray-500">End date</h3>
+        <h4>{{tournament.end_date | date:'dd.MM.yyyy HH:mm '  : 'UTC' + 6}}</h4>
+      </div>
+      <div class="border-b py-12">
+        <h3 class="text-sm text-gray-500">Prize fund</h3>
+        <h4>{{tournament.prize_fund}} KZT</h4>
+      </div>
+    </div>
+    <div class="col-span-4">
+      <div class="py-10 px-4">
+        <h1 class="text-3xl mb-2 font-bold tracking-tight text-black">
+          Description
+        </h1>
+        <h3>{{tournament.description}}</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid commodi enim eveniet exercitationem id,
+          minima placeat quasi quo. Ducimus, iste, praesentium. At nobis, officiis? Autem culpa doloribus optio sint voluptates.
+        </p>
+
+        <h3 class="font-bold text-md mt-4">Rules</h3>
+
+        <li>Rule-1</li>
+        <li>Rule-2</li>
+        <li>Rule-3</li>
+        <li>Rule-4</li>
+        <li>Rule-5</li>
+
+        <p class="my-4">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid commodi enim eveniet exercitationem id,
+          minima placeat quasi quo. Ducimus, iste, praesentium. At nobis, officiis? Autem culpa doloribus optio sint voluptates.
+        </p>
+
+        <h3 class="font-bold text-md">Rules</h3>
+        <li>Rule-1</li>
+        <li>Rule-2</li>
+        <li>Rule-3</li>
+
+        <p class="my-4">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid commodi enim eveniet exercitationem id,
+          minima placeat quasi quo. Ducimus, iste, praesentium. At nobis, officiis? Autem culpa doloribus optio sint voluptates.
+        </p>
+      </div>
+    </div>
+  </div>
+  <a href="/tournaments" class="mr-2 inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
+            shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">← Back to tournaments</a>
+  <button (click)="subscribeToTournament()" class="inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
+            shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20 hover:bg-blue-700 hover:text-gray-50">Subscribe</button>
+</div>
+
+<!--alert success-->
+
+<div *ngIf="showSuccessAlert" class="success fixed flex top-8 right-4 w-96 shadow-lg rounded-lg">
+  <div class="bg-green-600 py-4 px-6 rounded-l-lg flex items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" class="text-white fill-current" viewBox="0 0 16 16" width="20" height="20"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>
+  </div>
+  <div class="px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
+    <div>Success alert</div>
+    <button (click)="showSuccessAlert = false">
+      <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-700" viewBox="0 0 16 16" width="20" height="20"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path></svg>
+    </button>
+  </div>
+</div>

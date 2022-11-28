@@ -1,5 +1,5 @@
 <div *ngIf="showAdminBoard; else error404Block">
-  <header class="mt-14 flex justify-center">
+  <header class="mt-10 flex justify-center">
     <h1 class="text-4xl font-bold tracking-tight text-black sm:text-5xl">
       Admin board
     </h1>
@@ -91,7 +91,7 @@
 <!--Show if showCreateCategory true-->
 <div *ngIf="showCreateTournament || showEditTournament" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 
-  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity form-tournament"></div>
 
   <div class="fixed inset-0 z-10 overflow-y-auto">
     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">

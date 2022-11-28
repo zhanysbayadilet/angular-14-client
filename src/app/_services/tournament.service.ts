@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable, tap} from "rxjs";
 import {Tournament} from "../_models/tournament";
-import {Category} from "../_models/category";
+
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +34,9 @@ export class TournamentService {
 
   saveTournament(tournament: Tournament):Observable<Tournament> {
     return this.http.post<Tournament>(this.API_URL + '/save', tournament)
+  }
+
+  subscribeToTournament(tournamentId: number, currentUserId: number) {
+    return this.http.post<Tournament>(this.API_URL + '/' + currentUserId + '/' + tournamentId, {})
   }
 }
