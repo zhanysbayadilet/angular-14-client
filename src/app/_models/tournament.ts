@@ -10,5 +10,6 @@ export class Tournament{
   prize_fund: string
   tournament_img: string
   category: Category
+  organizer: User
   users: User[]
 }
