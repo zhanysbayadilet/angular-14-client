@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
 import {CategoryService} from "../_services/category.service";
 import {Category} from "../_models/category";
+import {TournamentService} from "../_services/tournament.service";
 
 @Component({
   selector: 'app-home',
@@ -11,13 +12,22 @@ import {Category} from "../_models/category";
 export class HomeComponent implements OnInit {
   content?: string;
   categoriesArr: Category[] = [];
+  countUsers: number;
+  countTournaments: number;
+  countOrganizations: number = 15;
+  countPartners: number = 5;
   isOpen: boolean;
 
-  constructor(private userService: UserService, private categoryService: CategoryService) { }
+  constructor(private userService: UserService,
+              private categoryService: CategoryService,
+              private tournamentService: TournamentService) { }
 
   ngOnInit(): void {
     this.getUserContent();
     this.getAllCategories();
+
+    this.getCountUsers();
+    this.getCountTournaments();
   }
 
   private getUserContent(){
@@ -35,8 +45,19 @@ export class HomeComponent implements OnInit {
     this.categoryService.getCategories().subscribe(
       categories => {
         this.categoriesArr = categories;
-        console.log('categoriesArr:' + this.categoriesArr);
       }
     )
+  }
+
+  private getCountUsers(){
+    this.userService.getCountUsers().subscribe(res=>{
+      this.countUsers = res;
+    });
+  }
+
+  private getCountTournaments(){
+    this.tournamentService.getCountTournaments().subscribe(res=>{
+      this.countTournaments = res;
+    })
   }
 }

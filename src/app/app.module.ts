@@ -26,6 +26,7 @@ import { UsersComponent } from './board-admin/users/users.component';
 import { TournamentDetailComponent } from "./tournaments/tournament-detail/tournament-detail.component";
 import { UserMapComponent } from './user-map/user-map.component'
 import { CategoriesComponent } from './categories/categories.component';
+import { GetFirstWord } from './pipes/get-firstchar.pipe';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CategoriesComponent } from './categories/categories.component';
     FilterTournamentPipe,
     FilterCategoryPipe,
     FilterUserPipe,
+    GetFirstWord,
     NavbarComponent,
     UsersComponent,
     TournamentDetailComponent,
