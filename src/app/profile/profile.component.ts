@@ -18,6 +18,9 @@ export class ProfileComponent implements OnInit {
     this.currentUserInToken = this.token.getUser();
     this.userService.getUser(this.currentUserInToken.id).subscribe(res=>{
       this.currentUser = res;
+    });
+    this.userService.getUserTournaments(this.currentUserInToken.id).subscribe(tournaments=>{
+      this.currentUser.tournaments = tournaments;
       console.log(this.currentUser.tournaments);
     });
   }
