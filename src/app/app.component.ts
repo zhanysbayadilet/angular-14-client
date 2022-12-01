@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   showModeratorBoard = false;
   username?: string;
   name?: string;
+  email?: string;
   isOpen: boolean;
 
   constructor(private tokenStorageService: TokenStorageService) { }
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit {
 
       this.username = user.username;
       this.name = user.name;
+      this.email = user.email;
     }
   }
 

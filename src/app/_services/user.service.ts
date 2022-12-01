@@ -38,7 +38,7 @@ export class UserService {
       );
   }
 
-  getUser(id: number): Observable<User>{
+  getUser(id: any | undefined): Observable<User>{
     return this.http.get<User>(this.API_URL2 + id);
   }
 
@@ -48,5 +48,9 @@ export class UserService {
 
   saveUser(user: User):Observable<Object> {
     return this.http.post(this.API_URL2 + 'save', user);
+  }
+
+  getCountUsers(): Observable<number> {
+    return this.http.get<number>(this.API_URL2 + 'count');
   }
 }
