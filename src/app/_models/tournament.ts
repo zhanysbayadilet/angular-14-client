@@ -11,5 +11,4 @@ export class Tournament{
   tournament_img: string
   category: Category
   organizer: User
-  users: User[]
 }

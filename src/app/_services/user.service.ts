@@ -58,4 +58,8 @@ export class UserService {
   getUserTournaments(id: number | undefined): Observable<Tournament[]> {
     return this.http.get<Tournament[]>(this.API_URL2 + id + '/tournaments');
   }
+
+  getMyTournaments(id: number | undefined): Observable<Tournament[]> {
+    return this.http.get<Tournament[]>(this.API_URL2 + id + '/myTournaments');
+  }
 }

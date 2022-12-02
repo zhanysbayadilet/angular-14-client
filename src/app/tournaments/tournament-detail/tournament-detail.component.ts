@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Tournament} from "../../_models/tournament";
 import {TokenStorageService} from "../../_services/token-storage.service";
 import {Category} from "../../_models/category";
+import {User} from "../../_models/user";
 
 @Component({
   selector: 'app-tournament-detail',
@@ -16,6 +17,9 @@ export class TournamentDetailComponent implements OnInit {
   tournament: Tournament = new Tournament();
   category: Category = new Category();
   showSuccessAlert: boolean = false;
+  organizer: User;
+  organizerUsername: string;
+  organizerEmail: string;
 
   constructor(private tournamentService: TournamentService,
               public route: ActivatedRoute,
@@ -33,6 +37,9 @@ export class TournamentDetailComponent implements OnInit {
       res => {
         this.tournament = res
         this.category = this.tournament.category
+        this.organizer = this.tournament.organizer
+        this.organizerUsername = this.organizer.username
+        this.organizerEmail = this.organizer.email
       }
     );
   }
