@@ -54,12 +54,12 @@ export class UsersComponent implements OnInit {
     // this.saveUser();
   }
 
-  saveUser(){
-    this.userService.saveUser(this.user).subscribe(
-      data => data = this.user
-    );
-    window.location.reload();
-  }
+  // saveUser(){
+  //   this.userService.saveUser(this.user).subscribe(
+  //     data => data = this.user
+  //   );
+  //   window.location.reload();
+  // }
 
   deleteUser(id: number | undefined) {
     this.userService.deleteUser(id)
