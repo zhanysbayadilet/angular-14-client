@@ -1,0 +1,23 @@
+.user-form-animation {
+  opacity: 0;
+  animation: ani 0.5s forwards;
+}
+
+@keyframes ani {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+
+.remove-btn {
+  position: absolute;
+  cursor: pointer;
+  top: -10px;
+  right: -10px;
+  background-color: red;
+  width: 20px;
+  height: auto;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+}

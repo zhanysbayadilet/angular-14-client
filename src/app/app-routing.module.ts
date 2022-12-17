@@ -24,10 +24,14 @@ const routes: Routes = [
   { path: 'user', component: BoardUserComponent },
   { path: 'mod', component: BoardModeratorComponent },
   { path: 'tournaments', component: TournamentsComponent },
-  { path: 'admin/tournament', component: TournamentComponent },
-  { path: 'admin', component: BoardAdminComponent },
-  { path: 'admin/category', component: CategoryComponent },
-  { path: 'admin/users', component: UsersComponent },
+  { path: 'admin',
+    component: BoardAdminComponent,
+    children: [
+      { path: 'tournaments', component: TournamentComponent },
+      { path: 'categories', component: CategoryComponent },
+      { path: 'users', component: UsersComponent }
+    ]
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'tournaments/:tournamentId', component: TournamentDetailComponent},
   { path: 'usermap', component: UserMapComponent},
