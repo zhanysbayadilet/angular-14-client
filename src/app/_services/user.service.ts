@@ -47,8 +47,8 @@ export class UserService {
     return this.http.delete<User[]>(this.API_URL2 + id);
   }
 
-  saveUser(user: User):Observable<Object> {
-    return this.http.post(this.API_URL2 + 'save', user);
+  saveUser(user: FormData){
+    return this.http.post<User>(this.API_URL2 + 'save', user);
   }
 
   getCountUsers(): Observable<number> {
@@ -62,4 +62,5 @@ export class UserService {
   getMyTournaments(id: number | undefined): Observable<Tournament[]> {
     return this.http.get<Tournament[]>(this.API_URL2 + id + '/myTournaments');
   }
+
 }

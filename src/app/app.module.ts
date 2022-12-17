@@ -21,7 +21,6 @@ import { TournamentComponent } from './board-admin/tournament/tournament.compone
 import {FilterTournamentPipe} from "./pipes/filter-tournament.pipe";
 import {FilterCategoryPipe} from "./pipes/filter-category.pipe";
 import {FilterUserPipe} from "./pipes/filter-user.pipe";
-import { NavbarComponent } from './board-admin/navbar/navbar.component';
 import { UsersComponent } from './board-admin/users/users.component';
 import { TournamentDetailComponent } from "./tournaments/tournament-detail/tournament-detail.component";
 import { UserMapComponent } from './user-map/user-map.component'
@@ -46,7 +45,6 @@ import { GetFirstWord } from './pipes/get-firstchar.pipe';
     FilterCategoryPipe,
     FilterUserPipe,
     GetFirstWord,
-    NavbarComponent,
     UsersComponent,
     TournamentDetailComponent,
     UserMapComponent,

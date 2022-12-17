@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
-import {Category} from "../_models/category";
 import {CategoryService} from "../_services/category.service";
 import {TokenStorageService} from "../_services/token-storage.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-board-admin',
@@ -11,8 +9,6 @@ import {Router} from "@angular/router";
   styleUrls: ['./board-admin.component.css']
 })
 export class BoardAdminComponent implements OnInit {
-  categoriesArr: Category[] = [];
-  category: Category = new Category();
 
   private roles: string[] = [];
   content?: string;
@@ -22,12 +18,10 @@ export class BoardAdminComponent implements OnInit {
   username?: string;
   name?: string;
 
-  showCreateCategory: boolean = false;
-
   constructor(private userService: UserService,
               private categoryService: CategoryService,
               private tokenStorageService: TokenStorageService,
-              private router: Router) { }
+  ) { }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -44,7 +38,6 @@ export class BoardAdminComponent implements OnInit {
     }
 
     this.getUserBoard();
-    this.getAllCategories();
   }
 
   private getUserBoard(){
@@ -58,43 +51,4 @@ export class BoardAdminComponent implements OnInit {
     );
   }
 
-  //category methods
-  private getAllCategories(){
-    this.categoryService.getCategories().subscribe(
-      categories => {
-        this.categoriesArr = categories;
-        console.log('categoriesArr:' + this.categoriesArr);
-      }
-    )
-  }
-
-  deleteCategory(id: number | undefined) {
-    this.categoryService.deleteCategory(id)
-      .pipe()
-      .subscribe(()=>{
-        this.categoryService.getCategories()
-        window.location.reload();
-      });
-  }
-
-
-  createCategory() {
-    this.showCreateCategory = true;
-  }
-
-  hideCreateCategory() {
-    this.showCreateCategory = false;
-  }
-
-  submit(){
-    this.saveCategory();
-  }
-
-  saveCategory(){
-    this.categoryService.saveCategory(this.category).subscribe(
-      data => data = this.category
-    );
-    window.location.reload();
-  }
-  //end category methods
 }

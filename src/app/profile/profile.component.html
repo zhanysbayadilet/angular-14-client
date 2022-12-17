@@ -3,8 +3,14 @@
     <div class="col-span-6">
       <div class="grid grid-cols-6 px-5 py-5 border rounded-lg">
         <div class="col-span-3 flex items-center">
-          <img class="object-cover w-20 h-20 rounded-full ring-4 ring-gray-200 mr-4"
-               src="./assets/aibol.jpeg" alt="">
+          <img *ngIf="currentUser.userImages[0] as image;else elseBlock"
+               class="object-cover w-20 h-20 rounded-full ring-4 ring-gray-200 mr-4"
+               [src]="image.url" alt="userImage">
+          <ng-template #elseBlock>
+            <div class="object-cover w-20 h-20 rounded-full ring-4 ring-gray-200 mr-4 flex justify-center items-center">
+              <span class="text-4xl font-bold tracking-tight text-black">{{currentUser.username.charAt(0).toUpperCase()}}</span>
+            </div>
+          </ng-template>
           <div>
             <h3 class="text-lg capitalize font-bold tracking-tight text-black">{{currentUser.username}}</h3>
             <a href class="text-sm text-blue-600 hover:text-blue-700">{{currentUser.email}}</a>
@@ -12,9 +18,9 @@
           </div>
         </div>
         <div class="col-span-3 flex pr-6 justify-end items-center">
-          <a href="">
+          <button type="button" (click)="showEditUserFrom()">
             <img src="/assets/vuesax/linear/user-edit.svg" alt="user-edit">
-          </a>
+          </button>
         </div>
       </div>
       <div class="col-span-6">
@@ -137,15 +143,14 @@
   </div>
 </div>
 
+<!--Tournament form-->
 <div *ngIf="showCreateTournament" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-
   <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity form-tournament"></div>
-
   <div class="fixed inset-0 z-10 overflow-y-auto">
     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
 
       <div class="hover:scale-100 ease-in-out duration-300 delay-150 relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-        <form (ngSubmit)="submit()">
+        <form (ngSubmit)="submitTournament()">
           <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div>
               <div class="mt-3 text-center sm:mt-0 m-x-4 sm:text-left">
@@ -196,6 +201,59 @@
           <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
             <button *ngIf="showCreateTournament" type="submit" class="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Create</button>
             <button (click)="hideCreateTournament()" type="button" class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--User form-->
+<div *ngIf="showEditUser" class="relative z-10 user-form-animation" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="fixed inset-0 bg-black bg-opacity-75 transition-opacity"></div>
+  <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+
+      <div class="hover:scale-110 ease-in-out duration-300 delay-150 relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+        <form #userForm="ngForm" (ngSubmit)="submitUser(userForm)">
+          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div>
+              <div class="mt-3 text-center sm:mt-0 m-x-4 sm:text-left">
+                <h3 class="text-lg font-medium leading-6 text-gray-900">
+                  Edit user
+                </h3>
+                <label for="edit_image" class="mt-4 text-sm font-medium text-gray-700">Edit image</label>
+                <div class="mt-2 flex">
+                  <input type="file" multiple value="select" #selectFile (change)="onFileSelected($event)" name="edit_image" id="edit_image"
+                         class="flex-auto w-full mr-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Edit image">
+                  <div *ngFor="let file of currentUser.userImages; let i = index;" class="relative">
+                    <button type="button" class="remove-btn" (click)="removeImage(i)">x</button>
+                    <img class="object-cover w-20 h-20 rounded-full ring-4 ring-gray-200 mr-4"
+                       [src]="file.url" alt="userImage">
+                  </div>
+                </div>
+                <label for="category_name" class="mt-4 text-sm font-medium text-gray-700">Username / </label>
+                <label for="category_img" class="mt-4 text-sm font-medium text-gray-700">Email</label>
+                <div class="mt-2 flex">
+                  <input type="text" [(ngModel)]="currentUser.username" disabled name="category_name" id="category_name"
+                         class="flex-auto w-full mr-2 rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Category name">
+
+                  <input type="text" [(ngModel)]="currentUser.email" name="category_img" id="category_img"
+                         class="flex-auto w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Image link">
+                </div>
+                <div>
+                  <label for="about" class="block mt-4 text-sm font-medium text-gray-700">Image</label>
+                  <div class="mt-1">
+                    <textarea name="about" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Enter description"></textarea>
+                  </div>
+                  <p class="mt-2 text-sm text-gray-500">Brief description for your profile. URLs are hyperlinked.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+            <button type="submit" class="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Save</button>
+            <button (click)="hideEditUser()" type="button" class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
           </div>
         </form>
       </div>
