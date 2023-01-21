@@ -50,7 +50,7 @@
         <td class="px-4 py-4 max-w-lg">{{tournament.end_date | date:'dd.MM.yyyy HH:mm '  : 'UTC' + 6}}</td>
         <td class="px-4 py-4 max-w-lg">{{tournament.prize_fund}}</td>
         <td class="px-4 py-4 max-w-lg">{{tournament.category.category_name}}</td>
-<!--        <td class="px-4 py-4 max-w-lg">{{tournament.organizer.username}}</td>-->
+        <td class="px-4 py-4 max-w-lg">{{tournament.organizer.username}}</td>
         <td class="px-4 py-4">
           <button type="button" (click)="editTournamentForm(tournament)" class="inline-block rounded-lg mr-2 px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
             shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20 mb-2">Edit</button>

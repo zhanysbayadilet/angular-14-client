@@ -5,6 +5,7 @@ import {Tournament} from "../../_models/tournament";
 import {TokenStorageService} from "../../_services/token-storage.service";
 import {Category} from "../../_models/category";
 import {User} from "../../_models/user";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tournament-detail',
@@ -16,14 +17,14 @@ export class TournamentDetailComponent implements OnInit {
   currentUser: any;
   tournament: Tournament = new Tournament();
   category: Category = new Category();
-  showSuccessAlert: boolean = false;
   organizer: User;
   organizerUsername: string;
   organizerEmail: string;
 
   constructor(private tournamentService: TournamentService,
               public route: ActivatedRoute,
-              private token: TokenStorageService) {
+              private token: TokenStorageService,
+              private snackBar: MatSnackBar) {
     this.tournamentId = this.route.snapshot.paramMap.get('tournamentId');
     this.currentUser = this.token.getUser();
   }
@@ -45,24 +46,18 @@ export class TournamentDetailComponent implements OnInit {
   }
 
   subscribeToTournament(){
-    this.showSuccess()
     return this.tournamentService.subscribeToTournament(this.tournamentId, this.currentUser.id).subscribe(
       res => {
-        this.tournament = res
+        this.tournament = res;
+        if (res) {
+          this.openSnackBar('Success', 'Ok');
+        }
       }
     )
   }
 
-  showSuccess(){
-    (async () => {
-      this.showSuccessAlert = true;
-      await delay(5000);
-      this.showSuccessAlert = false;
-
-      async function delay(ms: number) {
-        return new Promise( resolve => setTimeout(resolve, ms) );
-      }
-    })();
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action);
   }
 
 }

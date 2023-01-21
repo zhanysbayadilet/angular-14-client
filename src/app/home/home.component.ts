@@ -16,7 +16,8 @@ export class HomeComponent implements OnInit {
   countTournaments: number;
   countOrganizations: number = 15;
   countPartners: number = 5;
-  isOpen: boolean;
+  loadingMode: boolean;
+  progressValue: number = 0;
 
   constructor(private userService: UserService,
               private categoryService: CategoryService,
@@ -25,7 +26,17 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getUserContent();
     this.getAllCategories();
-
+    (async () => {
+      this.loadingMode = true;
+      this.progressValue = 0;
+      await delay(1000);
+      this.progressValue = 100;
+      await delay(1000);
+      this.loadingMode = false;
+      async function delay(ms: number) {
+        return new Promise( resolve => setTimeout(resolve, ms) );
+      }
+    })();
     this.getCountUsers();
     this.getCountTournaments();
   }
@@ -46,7 +57,7 @@ export class HomeComponent implements OnInit {
       categories => {
         this.categoriesArr = categories;
       }
-    )
+    );
   }
 
   private getCountUsers(){

@@ -26,6 +26,14 @@ import { TournamentDetailComponent } from "./tournaments/tournament-detail/tourn
 import { UserMapComponent } from './user-map/user-map.component'
 import { CategoriesComponent } from './categories/categories.component';
 import { GetFirstWord } from './pipes/get-firstchar.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from "@angular/material/button";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -49,13 +57,21 @@ import { GetFirstWord } from './pipes/get-firstchar.pipe';
     TournamentDetailComponent,
     UserMapComponent,
     UsersComponent,
-    CategoriesComponent
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatMenuModule,
+    MatTabsModule,
+    MatButtonToggleModule,
+    MatSnackBarModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

@@ -31,114 +31,113 @@
       </div>
 
       <div class="col-span-6 mt-2">
-        <h1 class="text-3xl pt-2 font-bold tracking-tight text-black">
-          Tournaments
-        </h1>
-        <article *ngFor="let tournament of tournaments"
-                 class="border rounded-md my-2 p-4 space-x-4 items-start sm:space-x-6 flex
-             hover:bg-gray-100 transition duration-100 ease-in-out">
-          <div class="min-w-0 relative flex-auto">
-            <h2 class="font-semibold text-slate-900 truncate sm:pr-20">{{tournament.name}}</h2>
-            <dl class="mt-2 flex flex-wrap text-sm leading-6 font-medium">
-              <div class="hidden absolute top-0 right-0 sm:flex items-center space-x-1">
-                <dd>{{tournament.prize_fund}}</dd>
-                <dt>KZT</dt>
-              </div>
-              <div>
-                <dt class="sr-only">Rating</dt>
-                <dd class="ring-1 ring-slate-200 rounded-md flex items-center px-1.5 py-1 bg-white">
-                  <img src="{{tournament.category.category_img}}" loading="lazy" decoding="async" alt="" width="23"
-                       class="flex-none rounded-md pr-1.5">
-                  <span class="text-sm">{{tournament.category.category_name}}</span>
-                </dd>
-              </div>
-              <div class="ml-2">
-                <dt class="sr-only">Date</dt>
-                <dd class="px-1.5 py-1">{{tournament.start_date | date:'dd.MM.yyyy HH:mm '  : 'UTC' + 6}}</dd>
-              </div>
-              <div>
-                <dd class="flex items-center px-1.5 py-1">
-                  <svg width="2" height="2" fill="currentColor" class="mx-2 text-slate-300" aria-hidden="true">
-                    <circle cx="1" cy="1" r="1"></circle>
-                  </svg>
-                  to</dd>
-              </div>
-              <div>
-                <dt class="sr-only">End date</dt>
-                <dd class="flex items-center px-1.5 py-1">
-                  <svg width="2" height="2" fill="currentColor" class="mx-2 text-slate-300" aria-hidden="true">
-                    <circle cx="1" cy="1" r="1"></circle>
-                  </svg>
-                  {{tournament.end_date | date:'dd.MM.yyyy HH:mm '  : 'UTC' + 6}}
-                </dd>
-              </div>
-              <div class="flex-none w-full mt-2 font-normal">
-                <dt class="sr-only">Description</dt>
-                <dd class="text-slate-400">{{tournament.description}}</dd>
-              </div>
-            </dl>
-          </div>
-        </article>
       </div>
 
     </div>
 
     <div class="col-span-6">
-      <div class="px-10 py-2 mb-2 border text-center rounded-lg">
-        <h1 class="text-3xl font-bold tracking-tight text-black">
-          My Tournaments
-        </h1>
-      </div>
-      <article *ngFor="let tournament of myTournaments"
-               class="border rounded-md my-2 p-4 space-x-4 items-start sm:space-x-6 flex
+
+      <mat-tab-group animationDuration="0ms">
+        <mat-tab label="My Tournaments" class="mat-tab-1">
+          <article *ngFor="let tournament of myTournaments"
+                   class="border rounded-md my-2 p-4 space-x-4 items-start sm:space-x-6 flex
              hover:bg-gray-100 transition duration-100 ease-in-out">
-        <div class="min-w-0 relative flex-auto">
-          <h2 class="font-semibold text-slate-900 truncate sm:pr-20">{{tournament.name}}</h2>
-          <dl class="mt-2 flex flex-wrap text-sm leading-6 font-medium">
-            <div class="hidden absolute top-0 right-0 sm:flex items-center space-x-1">
-              <dd>{{tournament.prize_fund}}</dd>
-              <dt>KZT</dt>
+            <div class="min-w-0 relative flex-auto">
+              <h2 class="font-semibold text-slate-900 truncate sm:pr-20">{{tournament.name}}</h2>
+              <dl class="mt-2 flex flex-wrap text-sm leading-6 font-medium">
+                <div class="hidden absolute top-0 right-0 sm:flex items-center space-x-1">
+                  <dd>{{tournament.prize_fund}}</dd>
+                  <dt>KZT</dt>
+                </div>
+                <div>
+                  <dt class="sr-only">Rating</dt>
+                  <dd class="ring-1 ring-slate-200 rounded-md flex items-center px-1.5 py-1 bg-white">
+                    <img src="{{tournament.category.category_img}}" loading="lazy" decoding="async" alt="" width="23"
+                         class="flex-none rounded-md pr-1.5">
+                    <span class="text-sm">{{tournament.category.category_name}}</span>
+                  </dd>
+                </div>
+                <div class="ml-2">
+                  <dt class="sr-only">Date</dt>
+                  <dd class="px-1.5 py-1">{{tournament.start_date | date:'dd.MM.yyyy HH:mm '  : 'UTC' + 6}}</dd>
+                </div>
+                <div>
+                  <dd class="flex items-center px-1.5 py-1">
+                    <svg width="2" height="2" fill="currentColor" class="mx-2 text-slate-300" aria-hidden="true">
+                      <circle cx="1" cy="1" r="1"></circle>
+                    </svg>
+                    to</dd>
+                </div>
+                <div>
+                  <dt class="sr-only">End date</dt>
+                  <dd class="flex items-center px-1.5 py-1">
+                    <svg width="2" height="2" fill="currentColor" class="mx-2 text-slate-300" aria-hidden="true">
+                      <circle cx="1" cy="1" r="1"></circle>
+                    </svg>
+                    {{tournament.end_date | date:'dd.MM.yyyy HH:mm '  : 'UTC' + 6}}
+                  </dd>
+                </div>
+                <div class="flex-none w-full mt-2 font-normal">
+                  <dt class="sr-only">Description</dt>
+                  <dd class="text-slate-400">{{tournament.description}}</dd>
+                </div>
+              </dl>
             </div>
-            <div>
-              <dt class="sr-only">Rating</dt>
-              <dd class="ring-1 ring-slate-200 rounded-md flex items-center px-1.5 py-1 bg-white">
-                <img src="{{tournament.category.category_img}}" loading="lazy" decoding="async" alt="" width="23"
-                     class="flex-none rounded-md pr-1.5">
-                <span class="text-sm">{{tournament.category.category_name}}</span>
-              </dd>
-            </div>
-            <div class="ml-2">
-              <dt class="sr-only">Date</dt>
-              <dd class="px-1.5 py-1">{{tournament.start_date | date:'dd.MM.yyyy HH:mm '  : 'UTC' + 6}}</dd>
-            </div>
-            <div>
-              <dd class="flex items-center px-1.5 py-1">
-                <svg width="2" height="2" fill="currentColor" class="mx-2 text-slate-300" aria-hidden="true">
-                  <circle cx="1" cy="1" r="1"></circle>
-                </svg>
-                to</dd>
-            </div>
-            <div>
-              <dt class="sr-only">End date</dt>
-              <dd class="flex items-center px-1.5 py-1">
-                <svg width="2" height="2" fill="currentColor" class="mx-2 text-slate-300" aria-hidden="true">
-                  <circle cx="1" cy="1" r="1"></circle>
-                </svg>
-                {{tournament.end_date | date:'dd.MM.yyyy HH:mm '  : 'UTC' + 6}}
-              </dd>
-            </div>
-            <div class="flex-none w-full mt-2 font-normal">
-              <dt class="sr-only">Description</dt>
-              <dd class="text-slate-400">{{tournament.description}}</dd>
-            </div>
-          </dl>
-        </div>
-      </article>
-      <div class="col-span-6">
-        <button type="button" (click)="createTournamentForm()"
-                class="inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
+          </article>
+          <div class="col-span-6 m-2">
+            <button type="button" (click)="createTournamentForm()"
+                    class="inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
             shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">Create</button>
-      </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Tournaments">
+          <article *ngFor="let tournament of tournaments"
+                   class="border rounded-md my-2 p-4 space-x-4 items-start sm:space-x-6 flex
+             hover:bg-gray-100 transition duration-100 ease-in-out">
+            <div class="min-w-0 relative flex-auto">
+              <h2 class="font-semibold text-slate-900 truncate sm:pr-20">{{tournament.name}}</h2>
+              <dl class="mt-2 flex flex-wrap text-sm leading-6 font-medium">
+                <div class="hidden absolute top-0 right-0 sm:flex items-center space-x-1">
+                  <dd>{{tournament.prize_fund}}</dd>
+                  <dt>KZT</dt>
+                </div>
+                <div>
+                  <dt class="sr-only">Rating</dt>
+                  <dd class="ring-1 ring-slate-200 rounded-md flex items-center px-1.5 py-1 bg-white">
+                    <img src="{{tournament.category.category_img}}" loading="lazy" decoding="async" alt="" width="23"
+                         class="flex-none rounded-md pr-1.5">
+                    <span class="text-sm">{{tournament.category.category_name}}</span>
+                  </dd>
+                </div>
+                <div class="ml-2">
+                  <dt class="sr-only">Date</dt>
+                  <dd class="px-1.5 py-1">{{tournament.start_date | date:'dd.MM.yyyy HH:mm '  : 'UTC' + 6}}</dd>
+                </div>
+                <div>
+                  <dd class="flex items-center px-1.5 py-1">
+                    <svg width="2" height="2" fill="currentColor" class="mx-2 text-slate-300" aria-hidden="true">
+                      <circle cx="1" cy="1" r="1"></circle>
+                    </svg>
+                    to</dd>
+                </div>
+                <div>
+                  <dt class="sr-only">End date</dt>
+                  <dd class="flex items-center px-1.5 py-1">
+                    <svg width="2" height="2" fill="currentColor" class="mx-2 text-slate-300" aria-hidden="true">
+                      <circle cx="1" cy="1" r="1"></circle>
+                    </svg>
+                    {{tournament.end_date | date:'dd.MM.yyyy HH:mm '  : 'UTC' + 6}}
+                  </dd>
+                </div>
+                <div class="flex-none w-full mt-2 font-normal">
+                  <dt class="sr-only">Description</dt>
+                  <dd class="text-slate-400">{{tournament.description}}</dd>
+                </div>
+              </dl>
+            </div>
+          </article>
+        </mat-tab>
+      </mat-tab-group>
     </div>
   </div>
 </div>

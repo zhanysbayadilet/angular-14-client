@@ -14,8 +14,6 @@ export class AppComponent implements OnInit {
   username?: string;
   name?: string;
   email?: string;
-  isOpen: boolean;
-
   constructor(private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
@@ -37,5 +35,4 @@ export class AppComponent implements OnInit {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
-
 }
