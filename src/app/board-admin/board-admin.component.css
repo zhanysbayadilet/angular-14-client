@@ -7,3 +7,14 @@ tbody tr td:last-child { border-top-right-radius: 5px; border-bottom-right-radiu
 .nav {
   @apply bg-white flex justify-center border rounded-lg py-2 px-4 hover:bg-gray-100;
 }
+
+.links a:hover{
+  cursor: pointer;
+  border: 1px solid #B0B0B0 !important;
+  @apply transition-colors duration-300 transform
+}
+
+.links .activeLink {
+  border: 1px solid #000 !important;
+  @apply transition-colors duration-300 transform
+}

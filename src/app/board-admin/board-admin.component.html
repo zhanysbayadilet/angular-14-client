@@ -1,22 +1,21 @@
 <div *ngIf="showAdminBoard; else error404Block">
-  <header class="mt-14 flex justify-center">
+  <header class="mt-10 flex justify-center">
     <h1 class="text-4xl font-bold tracking-tight text-black sm:text-5xl">
       Admin board
     </h1>
   </header>
 
 <!-- Component -->
-  <div class="grid grid-cols-4 gap-4 mt-8 w-full">
-    <button type="button" routerLink="categories" class="nav">Categories</button>
-    <button type="button" routerLink="tournaments" class="nav">Tournaments</button>
-    <button type="button" routerLink="users" class="nav">Users</button>
-    <button type="button" routerLink="users" class="nav">Other</button>
+  <div class="grid grid-cols-3 gap-4 mt-8 w-full links">
+    <a [routerLinkActive]="'activeLink'" routerLink="categories" class="nav">Categories</a>
+    <a [routerLinkActive]="'activeLink'" routerLink="tournaments" class="nav">Tournaments</a>
+    <a [routerLinkActive]="'activeLink'" routerLink="users" class="nav">Users</a>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
   </div>
 </div>
 
-<div>
-  <router-outlet></router-outlet>
-</div>
 
 <ng-template #error404Block>
   <app-page404></app-page404>
