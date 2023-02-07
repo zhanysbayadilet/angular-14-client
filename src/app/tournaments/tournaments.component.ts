@@ -3,7 +3,7 @@ import {Tournament} from "../_models/tournament";
 import {TournamentService} from "../_services/tournament.service";
 import {CategoryService} from "../_services/category.service";
 import {Category} from "../_models/category";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-tournaments',
@@ -20,7 +20,10 @@ export class TournamentsComponent implements OnInit {
 
   constructor(private tournamentService: TournamentService,
               private categoryService: CategoryService,
-              public router: Router) { }
+              private route: ActivatedRoute,
+              public router: Router) {
+    this.route.queryParams.subscribe(params => this.category = params.category)
+  }
 
   ngOnInit(): void {
     this.getAllTournaments();
