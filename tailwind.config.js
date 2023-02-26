@@ -4,7 +4,13 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        clashDisplayRegular: ["clash-display-regular"],
+        clashDisplayMedium: ["clash-display-medium"],
+        clashDisplayBold: ["clash-display-bold"],
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),

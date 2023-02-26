@@ -5,7 +5,7 @@ import {Tournament} from "../../_models/tournament";
 import {TokenStorageService} from "../../_services/token-storage.service";
 import {Category} from "../../_models/category";
 import {User} from "../../_models/user";
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tournament-detail',
@@ -20,6 +20,10 @@ export class TournamentDetailComponent implements OnInit {
   organizer: User;
   organizerUsername: string;
   organizerEmail: string;
+  private durationInSeconds: number = 3;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'left';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  viewSubscribeButton: boolean = false;
 
   constructor(private tournamentService: TournamentService,
               public route: ActivatedRoute,
@@ -31,6 +35,7 @@ export class TournamentDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTournament()
+    this.checkStatusSubscribe();
   }
 
   getTournament(){
@@ -50,14 +55,35 @@ export class TournamentDetailComponent implements OnInit {
       res => {
         this.tournament = res;
         if (res) {
-          this.openSnackBar('Success', 'Ok');
+          this.checkStatusSubscribe();
+          this.openSnackBar('You have successfully subscribed!', 'OК');
         }
       }
     )
   }
 
   openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action);
+    this.snackBar.open(message, action, {
+      duration: this.durationInSeconds * 1000,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
   }
 
+  checkStatusSubscribe(){
+    this.tournamentService.getStatusSubscribe(this.currentUser.id, this.tournamentId).subscribe(res =>{
+      this.viewSubscribeButton = res == null;
+    })
+  }
+
+  unSubscribeToTournament() {
+    this.tournamentService.unsubscribeToTournament(this.currentUser.id, this.tournamentId).subscribe(res =>{
+      this.checkStatusSubscribe();
+      if (res == 1) {
+        this.openSnackBar('You have successfully unsubscribed!', 'OК');
+      } else {
+        this.openSnackBar('You have successfully subscribed!', 'OК');
+      }
+    })
+  }
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { TokenStorageService } from './_services/token-storage.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,10 @@ export class AppComponent implements OnInit {
   username?: string;
   name?: string;
   email?: string;
-  constructor(private tokenStorageService: TokenStorageService) { }
+  selectedLanguage: any;
+  languages = ['kz', 'ru', 'en'];
+  constructor(private tokenStorageService: TokenStorageService,
+              private translateService: TranslateService) { }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -29,10 +33,29 @@ export class AppComponent implements OnInit {
       this.name = user.name;
       this.email = user.email;
     }
+
+    this.getLanguageInLocalStorage();
   }
 
   logout(): void {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
+
+  public selectLanguage(event: any){
+    window.localStorage.removeItem('language');
+    window.localStorage.setItem('language', event.target.value);
+    this.translateService.use(event.target.value);
+  }
+
+  private getLanguageInLocalStorage(){
+    if (window.localStorage.getItem('language')){
+      this.selectedLanguage = window.localStorage.getItem('language');
+    } else {
+      window.localStorage.setItem('language', 'kz');
+      this.selectedLanguage = window.localStorage.getItem('language');
+    }
+    this.translateService.use(this.selectedLanguage);
+  }
+
 }

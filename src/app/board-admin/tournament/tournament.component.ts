@@ -12,9 +12,9 @@ import {Observable} from "rxjs";
   styleUrls: ['./tournament.component.css']
 })
 export class TournamentComponent implements OnInit {
-  tournamentsArr: Tournament[] = [];
+  tournaments: Tournament[] = [];
   tournament: Tournament = new Tournament();
-  categoriesArr: Category[] = []
+  categoriesArr: Category[] = [];
   category: Observable<Category> = new Observable<Category>();
   showAdminBoard = false;
   isLoggedIn = false;
@@ -23,6 +23,11 @@ export class TournamentComponent implements OnInit {
   showEditTournament: boolean = false;
   object:Object = Object.keys(this.tournament).length;
   term = '';
+  private params: any;
+  pageNumber = 1;
+  pageSize = 10;
+  searchText: string;
+  totalElements: any;
 
   constructor(private tournamentService: TournamentService,
               private categoryService: CategoryService,
@@ -49,10 +54,19 @@ export class TournamentComponent implements OnInit {
   }
 
   public getAllTournaments(){
-    this.tournamentService.getTournaments().subscribe(
-      tournaments => {
-        this.tournamentsArr = tournaments;
-        console.log(this.tournamentsArr);
+    this.params = null;
+    this.params = {
+      pageSize: this.pageSize,
+      pageNumber: this.pageNumber - 1,
+    };
+
+    if (this.searchText !== undefined ) {
+      this.params.searchText = this.searchText;
+    }
+
+    this.tournamentService.getTournaments(this.params).subscribe(res => {
+        this.tournaments = res.content;
+        this.totalElements = res.total;
       }
     );
   }
@@ -70,7 +84,7 @@ export class TournamentComponent implements OnInit {
     this.tournamentService.deleteTournament(id)
       .pipe()
       .subscribe(()=>{
-        this.tournamentService.getTournaments()
+        this.getAllTournaments();
         window.location.reload();
       });
   }

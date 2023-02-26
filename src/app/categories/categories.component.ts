@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Category} from "../_models/category";
 import {CategoryService} from "../_services/category.service";
-import {Router} from "@angular/router";
+import {map, Observable, startWith} from "rxjs";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-categories',
@@ -11,12 +12,20 @@ import {Router} from "@angular/router";
 export class CategoriesComponent implements OnInit {
   categoriesArr: Category[] = [];
   term = '';
+  myControl = new FormControl('');
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
 
-  constructor(private categoryService: CategoryService,
-              private router: Router) { }
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.getAllCategories();
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        return this._filter(value || '');
+      }),
+    );
   }
 
   private getAllCategories(){
@@ -26,8 +35,9 @@ export class CategoriesComponent implements OnInit {
       }
     )
   }
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
 
-  goToTournaments() {
-    this.router.navigate([`/tournaments`]);
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 }
