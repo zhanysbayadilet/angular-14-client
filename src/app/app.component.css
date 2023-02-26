@@ -13,6 +13,35 @@
   100% {opacity: 1;}
 }
 
+/*@keyframes ani-icon {*/
+/*  0% {*/
+/*    opacity: 0;*/
+/*    transform: translateX(-20px);*/
+/*  }*/
+/*  100% {*/
+/*    opacity: 1;*/
+/*    transform: translateX(0);*/
+/*  }*/
+/*}*/
+
+.logoSpan1 {
+  animation: fadeInRight 600ms ease-in-out;
+}
+
+.logoSpan2 {
+  animation: fadeInRight 1s ease-in-out;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .links a:hover{
   cursor: pointer;
   border-bottom: 2px solid #B0B0B0 !important;
@@ -21,6 +50,17 @@
 
 .links .activeLink {
   border-bottom: 2px solid #000 !important;
-  @apply transition-colors duration-300 transform
+  @apply transition-colors duration-300 transform text-black
 }
+
+.language-picker {
+  border: 0;
+  border-radius: 5px;
+  height: 33px;
+  width: 60px;
+  margin-left: 5px;
+  font-size: 15px;
+  padding: 0 25px 0 10px;
+}
+
 

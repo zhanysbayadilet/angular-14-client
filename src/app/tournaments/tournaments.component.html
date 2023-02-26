@@ -1,13 +1,13 @@
-<div class="mx-36 mt-10">
+<div class="mt-28">
   <header class="flex items-center flex-col mb-2">
-    <h1 class="text-4xl font-bold tracking-tight text-black sm:text-5xl">
-      Tournaments
+    <h1 class="text-5xl font-clashDisplayMedium">
+      {{'Tournaments' | translate}}
     </h1>
     <p class="mt-2 text-base text-zinc-600 dark:text-zinc-400">
       I’ve worked on tons of little projects over the years.
     </p>
   </header>
-  <div class="relative z-10">
+  <div class="relative z-10 mx-40">
     <nav class="flex gap-2 text-sm font-medium">
       <div class="grow relative rounded-md">
         <svg width="20" height="20" fill="currentColor" class="absolute left-3 top-1/2 -mt-2.5 text-slate-400 pointer-events-none group-focus-within:text-blue-500">
@@ -15,7 +15,7 @@
         </svg>
         <input type="text" [(ngModel)]="term" aria-label="Filter projects" placeholder="Filter tournaments..."
                class="appearance-none w-full text-sm leading-6 bg-transparent placeholder:text-slate-400
-               rounded-md py-2 pl-10 ring-1 ring-slate-200 shadow-sm focus:ring-2 border-none">
+               rounded-md py-2 pl-10 ring-1 ring-slate-200 shadow-sm focus:ring-2 border-gray-[5%]">
       </div>
       <input type="Date" [(ngModel)]="date" name="start_date" id="start_date"
              class="flex-none w-36 py-2 rounded-md border-gray-200 focus:border-blue-500 focus:ring-blue-500 sm:text-sm" placeholder="Start date">
@@ -70,5 +70,12 @@
         </dl>
       </div>
     </article>
+    <ngb-pagination [collectionSize]="totalElements"
+                    [(page)]="pageNumber"
+                    [maxSize]="8"
+                    [pageSize]="pageSize"
+                    [boundaryLinks]="true"
+                    (pageChange)="getAllTournaments()">
+    </ngb-pagination>
   </div>
 </div>

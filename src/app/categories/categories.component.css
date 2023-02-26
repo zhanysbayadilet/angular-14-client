@@ -1,0 +1,3 @@
+.shadow-animation {
+  @apply hover:-translate-y-[6px] hover:-translate-x-[6px] duration-300 hover:shadow-[6px_6px_black];
+}

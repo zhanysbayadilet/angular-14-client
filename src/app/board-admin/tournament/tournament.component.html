@@ -41,7 +41,7 @@
         </tr>
       </thead>
       <tbody class="text-sm font-normal text-gray-700">
-      <tr *ngFor="let tournament of tournamentsArr | filterTournament: term"
+      <tr *ngFor="let tournament of tournaments | filterTournament: term"
           class="hover:bg-gray-100 border-b border-gray-200 py-10">
         <td class="px-4 py-4">{{tournament.id}}</td>
         <td class="px-4 py-4">{{tournament.name}}</td>

@@ -74,6 +74,8 @@
   </div>
   <a href="/tournaments" class="mr-2 inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
             shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20">← Back to tournaments</a>
-  <button (click)="subscribeToTournament()" class="inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
+  <button *ngIf="viewSubscribeButton" (click)="subscribeToTournament()" class="inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
             shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20 hover:bg-blue-700 hover:text-gray-50">Subscribe</button>
+  <button *ngIf="!viewSubscribeButton" (click)="unSubscribeToTournament()" class="inline-block rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900
+            shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20 hover:bg-blue-700 hover:text-gray-50">Unsubscribe</button>
 </div>

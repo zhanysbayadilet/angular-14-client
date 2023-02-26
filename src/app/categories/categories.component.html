@@ -1,7 +1,7 @@
-<div class="relative px-4 sm:px-8 lg:px-12 mt-10">
-  <div class="mx-auto max-w-2xl lg:max-w-5xl">
+<section class="relative px-4 mt-28 container">
+  <div class="mx-20">
     <header class="flex items-center flex-col">
-      <h1 class="text-4xl font-bold tracking-tight text-black sm:text-5xl">
+      <h1 class="text-5xl font-clashDisplayMedium">
         Categories
       </h1>
       <p class="my-3 text-base text-zinc-600">
@@ -12,39 +12,29 @@
           <path fill-rule="evenodd" clip-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"></path>
         </svg>
         <input type="text" [(ngModel)]="term" aria-label="Filter projects" placeholder="Filter category..."
-               class="appearance-none w-full text-sm leading-6 bg-transparent placeholder:text-slate-400
-               rounded-md py-2 pl-10 ring-1 ring-slate-200 shadow-sm focus:ring-2 border-none">
+               class="w-full text-sm leading-6 bg-transparent placeholder:text-slate-400
+               rounded-md py-2 pl-10">
       </div>
     </header>
-    <div class="grid grid-cols-3 gap-8 mt-12">
-      <div class="grid-cols-3 p-6 border rounded-2xl" *ngFor="let category of categoriesArr | filterCategory: term">
-        <ul role="list" class="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-1 lg:grid-cols-1">
-          <li class="group relative flex flex-col items-start">
-            <div class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md
-            shadow-zinc-800/5 ring-zinc-900/5 border border-zinc-700/50">
-              <img alt="" src="{{category.category_img}}" width="32" height="32" decoding="async"
-                   data-nimg="1" class="h-8 w-8" loading="lazy" style="color: transparent;">
+    <div class="grid grid-cols-3 gap-6 mt-6">
+      <div class="shadow-animation p-4 border-[1.5px] border-black rounded-xl" *ngFor="let category of categoriesArr | filterCategory:term;">
+        <a routerLink="../tournaments" [queryParams]="{category: category.category_name}">
+          <div class="flex justify-items-center justify-between items-center">
+            <div>
+              <span class="relative z-10 font-clashDisplayMedium text-2xl">{{category.category_name | uppercase}}</span>
+              <p class="relative z-10 mt-2 text-sm font-clashDisplayRegular text-zinc-600">
+                {{category.category_description}}
+              </p>
             </div>
-            <h2 class="mt-6 text-base font-semibold text-zinc-800">
-              <div class="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition
-              group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-200/50 sm:-inset-x-6 sm:rounded-2xl">
+            <div class="items-end">
+              <div class="z-10 flex h-14 w-14 items-center justify-center rounded-full border-[1.5px] border-black">
+                <img alt="" src="{{category.category_img}}" width="34" height="34" decoding="async"
+                     data-nimg="1" class="h-8 w-8" loading="lazy" style="color: transparent;">
               </div>
-              <a routerLink="../tournaments" [queryParams]="{category: category.category_name}">
-                <span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
-                <span class="relative z-10">{{category.category_name}}</span>
-              </a>
-            </h2>
-            <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-              {{category.category_description}}
-            </p>
-            <p class="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-blue-500
-              dark:text-zinc-200">
-              <span class="mr-1">Go to</span>
-              <span aria-hidden="true">&rarr;</span>
-            </p>
-          </li>
-        </ul>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
-</div>
+</section>
